@@ -65,9 +65,7 @@ public class StockUpdateController {
 	 * @return
 	 */
 	@RequestMapping(value = "/updateReInput")
-	public String updateReInputAction(StockUpdateForm stockUpdateForm, Model uiModel){
-		
-		uiModel.addAttribute("stock",stockUpdateForm);
+	public String updateReInputAction(Model uiModel){
 		return "stock/updateInput";
 	}
 	
@@ -82,6 +80,7 @@ public class StockUpdateController {
 	public String updateConfirmAction(@Valid StockUpdateForm stockUpdateForm, BindingResult result, Model uiModel){
 		if (result.hasErrors()) {
 			LOGGER.debug("invalid request.");
+			uiModel.addAttribute("message", messages.getMessage("I00001"));
 			return "stock/updateInput";
 		}
 		

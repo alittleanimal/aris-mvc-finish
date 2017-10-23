@@ -7,7 +7,7 @@
 
 
 <html>
-<<div class="row">
+<div class="row">
   <div class="span12" style="background-color: white;">
     
     <!-- breadcrumb -->
@@ -76,7 +76,8 @@
             <tr>
               <td colspan="2">
                 <div class="text-center">
-                <a href="/stock/search" class="btn"><i class="icon icon-eye-open"></i>&nbsp; Go Search</a>
+                <!-- <a href="aris/stock/search" class="btn"><i class="icon icon-eye-open"></i>&nbsp; Go Search</a> -->
+                <button type="submit" class="btn" name="goSearch"><i class="icon icon-eye-open"></i>&nbsp; Go Search</button>
                 </div>
               </td>
             </tr>

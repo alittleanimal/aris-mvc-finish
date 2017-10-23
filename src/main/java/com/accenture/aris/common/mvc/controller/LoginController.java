@@ -82,7 +82,8 @@ public class LoginController {
             loginForm.setPassword(null);
             
             LOGGER.debug("login Successful.");
-            return "redirect:top";
+            //return "redirect:top";
+            return "redirect:stock";
             
         } catch(Throwable th) {
             if (th instanceof org.mybatis.spring.MyBatisSystemException) {

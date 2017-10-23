@@ -162,11 +162,11 @@
 					<a href="${searchPageUrl}/${page.index}">${page.content}</a>
 				</li>
           		</c:forEach>
-
+				<br>
                 <li>
  　  					<form:form action="${searchPageUrl}" cssClass="form-inline" method="post">
     				Page:
-      				<input id="targetPage" name="targetPage" class="input-mini" type="text" value="${curPage}"/> / <c:out value="${pageCnt}"/>
+      				<input id="targetPage" name="targetPage" class="input-mini" type="text" value="${curPage}" onkeyup="this.value=this.value.replace(/\D/g,'')" /> / <c:out value="${pageCnt}"/>
       				<a id="jumpToPage" href="${searchPageUrl}" class="btn">
 					<i class="icon icon-eye-open"></i>&nbsp; JUMP
       				</a>

@@ -217,7 +217,7 @@
 		</if>
 		<if test="warehouseName != null">
 			AND t_warehouse.name like 
-			'%$warehouseName%'
+			'%${warehouseName}%'
 		</if>
 		order by
 		t_stock.id		

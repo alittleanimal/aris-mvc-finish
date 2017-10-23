@@ -92,7 +92,7 @@
           <!-- submit or return button -->
           <div class="control-group">
             <div class="controls">
-              <spring:url var="cancelUrl" value="/stock/updateInput" />
+              <spring:url var="cancelUrl" value="/stock/detail/${stockUpdateForm.id}"/>
               <a href="${cancelUrl}" class="btn"><i class="icon-remove-sign icon"></i>&nbsp; Cancel</a>
               <button class="btn btn-success" type="submit" name="update">Confirm &nbsp;<i class="icon-play icon-white icon"></i></button>
 			  <!-- <a class="btn btn-success" href="javascript:stockUpdateForm.submit();">Confirm &nbsp;<i class="icon-play icon-white icon"></i></a>  -->

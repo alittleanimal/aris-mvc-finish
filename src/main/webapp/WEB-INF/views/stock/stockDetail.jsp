@@ -31,7 +31,7 @@
         <!-- left space -->
           <div class="span2">
             <div class="text-center">
-              <a href="../stock/search.html" class="btn"><i class="icon icon-eye-open"></i>&nbsp; Go Search</a>
+              <a href="/aris/stock/search" class="btn"><i class="icon icon-eye-open"></i>&nbsp; Go Search</a>
             </div>
             <br>
             <br>
