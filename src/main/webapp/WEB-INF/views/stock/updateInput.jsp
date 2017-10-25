@@ -43,14 +43,16 @@
           <div class="control-group">
             <label for="dvdEanCode" class="control-label">DVD EAN CODE</label>
             <div class="controls">
-              <input id="dvdEanCode" name="dvdEanCode" class="input-large span4" readonly="readonly" type="text" value="${stockUpdateForm.dvdEanCode}"/>
+              <%-- <input id="dvdEanCode" name="dvdEanCode" class="input-large span4" readonly="readonly" type="text" value="${stockUpdateForm.dvdEanCode}"/> --%>
+              <form:input path = "dvdEanCode" id="dvdEanCode" name="dvdEanCode" class="input-large span4" readonly="true" type="text"/>
             </div>
           </div>
           
           <div class="control-group ">
             <label for="dvdTitle" class="control-label">DVD TITLE</label>
             <div class="controls">
-              <input id="dvdTitle" name="dvdTitle" class="input-large span4" readonly="readonly" type="text" value="${stockUpdateForm.dvdTitle}"/>
+              <%-- <input id="dvdTitle" name="dvdTitle" class="input-large span4" readonly="readonly" type="text" value="${stockUpdateForm.dvdTitle}"/> --%>
+              <form:input path = "dvdTitle" id="dvdTitle" name="dvdTitle" class="input-large span4" readonly="true" type="text"/>
             </div>
           </div>
 

@@ -74,7 +74,7 @@ public class UserUploadController {
             attributes.addFlashAttribute("message","The upload file is empty. Please set the upload file name.");
         }
         
-        return "redirect:/user/";
+        return "redirect:/user";
     }
     
     @RequestMapping(value = "/uploadInput")

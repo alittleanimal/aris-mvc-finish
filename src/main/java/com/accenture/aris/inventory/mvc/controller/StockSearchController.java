@@ -127,5 +127,12 @@ public class StockSearchController {
 		}
 		return "stock/stockList";
 	}
+	
+	@RequestMapping(value = "/deleteInput/{id}")
+	public String deleteAction(@PathVariable("id") int id, Model uiModel) {
+		stockService.deleteStockService(id);
+		//return "stock/stockList";
+		return "redirect:/stock/search";
+	}
 
 }

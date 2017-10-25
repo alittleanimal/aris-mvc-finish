@@ -52,7 +52,7 @@
       <div class="control-group ${passwordErrorCheck}">
         <label class="control-label" for="loginInputName">password</label>
         <div class="controls">
-          <form:input path="password" class="input-large" id="loginInputPassword" name="password" type="password" placeholder="password" value = "password"/>
+          <form:input path="password" class="input-large" id="loginInputPassword" name="password" type="password" placeholder="password"/>
           <form:errors path="password"  cssClass="text-error help-inline"/>
         </div>
       </div>

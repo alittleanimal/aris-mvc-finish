@@ -94,4 +94,10 @@ public class StockServiceImpl implements StockService {
 		}
 	}
 
+	@Override
+	public ServiceResult<Boolean> deleteStockService(int id) {
+		stockRepository.deleteByPrimaryKey(id);
+        return new ServiceResult<Boolean>(true);
+	}
+
 }

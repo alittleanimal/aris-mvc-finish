@@ -18,7 +18,18 @@
 			var url = $(this).attr("href") + '/' + $('#targetPage').val();
 			$(this).attr("href", url);
 		});
+		
+		$('a[name = deleteByName]').click(function() {
+			var url = "/aris/stock/deleteInput/" + $('#test').val();
+			var urlback = "/aris/stock/search/" + $('#targetPage').val();
+			if(confirm("Are you sure to delete this message?")){
+				$("#deleteResult").load($(this).attr("href", url));
+		    }else{
+		    	$(this).attr("href", urlback);
+		    }
+		}); 
 	});
+	
 </script>
 
 <div class="row">
@@ -110,7 +121,7 @@
 		</div>
 
 		<!-- search row -->
-		<div class="row">
+		<div class="row" id = "deleteResult">
 			<!-- search result -->
 			<div class="span12">
 				<c:if test="${not empty stocks}">
@@ -124,26 +135,31 @@
 								<th>WAREHOUSE ID</th>
 								<th>WAREHOUSE NAME</th>
 								<th>QUANTITY</th>
-								<th><i class="icon-search icon"></i>:VIEW &nbsp; <i
-									class="icon-edit icon"></i>:EDIT</th>
+								<th><i class="icon-search icon"></i>:VIEW 
+								&nbsp; <i class="icon-edit icon"></i>:EDIT
+								&nbsp; <i class="icon-edit icon"></i>:DELETE
+								</th>
 							</tr>
 						</thead>
 
 						<tbody>
 							<c:forEach var="stock" items="${stocks}">
 								<spring:url var="stockRefUrl" value="/stock/detail/${stock.id}" />
-								<tr data-href="${stockRefUrl}">
+								<tr>
 									<td><c:out value="${stock.dvdEanCode}"></c:out></td>
 									<td><c:out value="${stock.dvdTitle}"></c:out></td>
 									<td><c:out value="${stock.warehouseId}"></c:out></td>
 									<td><c:out value="${stock.warehouseName}"></c:out></td>
 									<td><c:out value="${stock.quantity}"></c:out></td>
 									<spring:url var="viewUrl" value="/stock/detail/${stock.id}" />
-									<spring:url var="editUrl"
-										value="/stock/updateInput/${stock.id}" />
-									<td><a href="${viewUrl}" class="btn"> <i
-											class="icon-search icon"></i>
-									</a> <a href="${editUrl}" class="btn"><i class="icon-edit icon"></i></a>
+									<spring:url var="editUrl" value="/stock/updateInput/${stock.id}" />
+									<td>
+									<a href="${viewUrl}" class="btn"> <i class="icon-search icon"></i></a>
+									<a href="${editUrl}" class="btn"> <i class="icon-edit icon"></i></a>
+									<a href="" class="btn" id = "delete" name = "deleteByName"> <i class="icon-white icon"></i></a>
+									<input id = "test" value = "${stock.id}" type = "hidden">
+									<%-- <a href="${deleteUrl}" class="btn" id = "delete" onClick = "del()"> <i class="icon-white icon"></i></a> --%>
+									<!-- <a class="btn" href="javascript:alert();">Delete<i class="icon-white icon"></i></a> -->
 									</td>
 								</tr>
 							</c:forEach>
