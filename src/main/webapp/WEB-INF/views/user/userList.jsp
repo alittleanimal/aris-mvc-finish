@@ -23,17 +23,20 @@
       $('#dialog').dialog("open");
     })
     
-   $("#ajaxButton").click(function(){
-	 var id = $('#ajaxButton').attr("data");
+   $('a[name = ajaxButton]').click(function(){
+	 var id = $('a[name = ajaxButton]').attr("data");
         $.ajax({
         	type: 'GET',
             url: '${ajax}'+id,
             dataType: "json",
             success: function(result){
-              alert(result.email);
               $("#email_val").html(result.email);
-              $("#email_val").val(result.email);
-              
+	          $("#id_html").html(result.id);
+	          $("#name_html").html(result.name);
+	          $("#role_html").html(result.roleId);
+	          $("#sex_html").html(result.sex);
+	          $("#text_html").html(result.text);
+	          $("#nationality").html(result.nationality);
               $("#dialog2").show();
             }
         });
@@ -159,7 +162,7 @@
                     <a href="${viewUrl}" class="btn" title="view item"><i class="icon-search icon"></i></a>
                     <a href="${editUrl}" class="btn" title="edit item"><i class="icon-edit icon"></i></a>
                     <a href="${deleteUrl}" class="btn" title="delete item"><i class="icon-trash icon"></i></a>
-                    <a href="javascript:void(0);" class="btn" title="Ajax" id = "ajaxButton" data="${user.id}"></a>
+                    <a href="javascript:void(0);" class="btn" title="Ajax" id = "ajaxButton" name = "ajaxButton" data="${user.id}"><i class="icon-th-list icon"></i></a>
                   </td>
                 </tr>
               </c:forEach>
@@ -194,15 +197,15 @@
           <tbody>
             <tr>
               <td><label for="id" class="pull-right">id　:　</label></td>
-              <td><c:out value="${userDetailForm.id}" /></td>
+              <td id="id_html"></td>
             </tr>
             <tr>
               <td><label class="pull-right" for="name">name　:　</label></td>
-              <td><c:out value="${userDetailForm.name}" /></td>
+              <td id="name_html"></td>
             </tr>
             <tr>
               <td><label for="roleId" class="pull-right">role　:　</label></td>
-              <td><c:out value="${userDetailForm.roleId}" /></td>
+              <td id="role_html"></td>
             </tr>
             <tr>
               <td><label class="pull-right" for="email">email　:　</label></td>
@@ -210,15 +213,15 @@
             </tr>
             <tr>
               <td><label for="sex" class="pull-right">sex　:　</label></td>
-              <td><c:out value="${userDetailForm.sex}" /></td>
+              <td id="sex_html"></td>
             </tr>
             <tr>
               <td><label for="nationality" class="pull-right">nationality　:　</label></td>
-              <td><c:out value="${userDetailForm.nationality}" /></td>
+              <td id="nationality"></td>
             </tr>
             <tr>
               <td><label for="text" class="pull-right">text　:　</label></td>
-              <td><c:out value="${userDetailForm.text}" /></td>
+              <td id="text_html"></td>
             </tr>
             <tr>
               <spring:url value="/user/updateInput/${userDetailForm.id}" var="updateUrl"/>
@@ -238,7 +241,7 @@
 </div>
 <div id="dialog">
   <form:form name="userUploadForm" action="${uploadUrl}" method="post" cssClass="form-horizontal" enctype="multipart/form-data" modelAttribute="userUploadForm">
-    <form:input path="name"  cssClass="input-large" placeholder="ファイル名を入力してください。"/>
+    <form:input path="name"  cssClass="input-large" placeholder="请输入文件名"/>
     <form:input path="uploadFile" id="uploadFile" name="uploadFile" type="file" class="input-large"/>
     <button type="submit" class="btn pull-right"><i class="icon icon-upload"></i>&nbsp; UPLOAD</button>    
   </form:form>

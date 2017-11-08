@@ -5,6 +5,5 @@ pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <header id="header">
-  <h3>DVD SHOP INVENTORY MANAGEMENT</h3>
 </header>
 <div class="pull-right"></div>

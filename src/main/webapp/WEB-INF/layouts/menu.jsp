@@ -5,7 +5,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <c:if test="${not empty menues}">
 
-  <div class="navbar navbar-inverse">
+  <%-- <div class="navbar navbar-inverse">
     <div class="navbar-inner">
       <div class="container">
         <nav>
@@ -26,5 +26,5 @@
         </nav>
       </div>
     </div>
-  </div>
+  </div> --%>
 </c:if>

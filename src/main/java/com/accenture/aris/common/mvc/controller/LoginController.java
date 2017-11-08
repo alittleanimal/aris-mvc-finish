@@ -43,7 +43,7 @@ public class LoginController {
     
     @RequestMapping(value = "/")
     public String indexAction(LoginForm loginForm, BindingResult results, Model uiModel) {
-        return "index";
+        return "page-login";
     }
 
     @RequestMapping(value = "/login")
@@ -52,7 +52,7 @@ public class LoginController {
         // check input error
         if(results.hasErrors()) {
             LOGGER.debug("invalid request.");
-            return "index";
+            return "page-login";
         }
         
         try {

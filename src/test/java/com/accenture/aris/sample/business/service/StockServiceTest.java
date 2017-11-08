@@ -24,7 +24,6 @@ import com.accenture.aris.core.support.utils.AssertUtils;
 import com.accenture.aris.core.support.utils.DatabaseUtils;
 import com.accenture.aris.inventory.business.entity.StockInfoEntity;
 import com.accenture.aris.inventory.business.service.StockService;
-import com.sun.media.sound.InvalidFormatException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:webmvc-config-test.xml")

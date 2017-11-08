@@ -154,9 +154,9 @@
 									<spring:url var="viewUrl" value="/stock/detail/${stock.id}" />
 									<spring:url var="editUrl" value="/stock/updateInput/${stock.id}" />
 									<td>
-									<a href="${viewUrl}" class="btn"> <i class="icon-search icon"></i></a>
-									<a href="${editUrl}" class="btn"> <i class="icon-edit icon"></i></a>
-									<a href="" class="btn" id = "delete" name = "deleteByName"> <i class="icon-white icon"></i></a>
+									<a href="${viewUrl}" class="btn"> <i class="icon-search icon"></i></a>&nbsp;&nbsp;&nbsp;
+									<a href="${editUrl}" class="btn"> <i class="icon-edit icon"></i></a>&nbsp;&nbsp;&nbsp;
+									<a href="" class="btn" id = "delete" name = "deleteByName"> <i class="icon-trash icon"></i></a>
 									<input id = "test" value = "${stock.id}" type = "hidden">
 									<%-- <a href="${deleteUrl}" class="btn" id = "delete" onClick = "del()"> <i class="icon-white icon"></i></a> --%>
 									<!-- <a class="btn" href="javascript:alert();">Delete<i class="icon-white icon"></i></a> -->
