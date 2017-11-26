@@ -7,5 +7,4 @@ public interface CourseService {
 	public ServiceResult<CourseEntity> selectCourse(int userid);
 	public ServiceResult<Boolean> AddStudent(Integer userid, String invitation);
 	public ServiceResult<Boolean> AddCourse(CourseEntity courseEntity);
-	
 }

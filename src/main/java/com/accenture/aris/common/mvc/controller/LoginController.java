@@ -53,7 +53,6 @@ public class LoginController {
         if(results.hasErrors()) {
             LOGGER.debug("invalid request.");
             return "page-login";
-            
         }
         
         try {

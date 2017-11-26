@@ -23,7 +23,6 @@ public class CourseServiceImpl implements CourseService{
 		ServiceResult<CourseEntity> result = new ServiceResult<CourseEntity>();
 		result.setAttribute("course", courseEntity);
 		return result;
-		
 	}
 	@Override
 	public ServiceResult<Boolean> AddStudent(Integer userid, String invitation) {
