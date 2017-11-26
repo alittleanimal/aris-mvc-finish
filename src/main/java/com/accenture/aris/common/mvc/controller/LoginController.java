@@ -66,7 +66,7 @@ public class LoginController {
             LOGGER.debug("Authentication : Successful");
             
             // execute Authorization
-            AuthorizationData role = authorization.authorize(loginForm.getName());
+            AuthorizationData role = authorization.authorize(loginForm.getName()); //where you can get the roleid
             if (role == null || role.getRoleId() == null) {
                 LOGGER.debug("Authorization : Failure");
                 uiModel.addAttribute("message", messages.getMessage("W00002"));         

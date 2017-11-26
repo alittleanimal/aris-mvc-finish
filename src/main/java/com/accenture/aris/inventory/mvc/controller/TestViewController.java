@@ -14,6 +14,6 @@ public class TestViewController {
 	
 	@RequestMapping(value = "/view/elements")
 	public String testElements(){
-		return "ktp/elements";
+		return "ktp/test/MyJsp";
 	}
 }
