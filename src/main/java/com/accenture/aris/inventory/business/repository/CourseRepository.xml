@@ -70,7 +70,7 @@
 		select
 		courseid
 		from t_course
-		where userid = #{userid,jdbcType=VARCHAR}
+		where userid = #{id}
 	</select>
 	
 </mapper>
