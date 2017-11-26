@@ -65,7 +65,7 @@
 		(#{0},#{1},#{2})
 	</insert>
 	
-	<select id="selectByUserid" resultMap="int"
+	<select id="selectByUserid" resultMap="String"
 		parameterType="int">
 		select
 		courseid

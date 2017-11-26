@@ -12,7 +12,7 @@ public class CourseServiceImpl implements CourseService{
 
 	private CourseRepository courseRepository;
 	@Override
-	public ServiceResult<CourseEntity> selectCourse(int userid) {
+	public ServiceResult<CourseEntity> selectCourse(String userid) {
 		List<Integer> courseList = courseRepository.selectByUserid(userid);
 		List<CourseEntity> courseEntityList = new ArrayList<CourseEntity>();
 		CourseEntity courseEntity = new CourseEntity();

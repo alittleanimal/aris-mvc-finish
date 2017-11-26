@@ -10,6 +10,6 @@ public interface CourseRepository {
 	int update(CourseEntity record);
 	int insertCourse(CourseEntity record);
 	int deleteByCno(int cno);
-	List<Integer> selectByUserid(int userid);
+	List<Integer> selectByUserid(String userid);
 	int insertStudent(int userid, int cno, String invite);
 }
