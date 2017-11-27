@@ -65,12 +65,12 @@
 		(#{0},#{1},#{2})
 	</insert>
 	
-	<select id="selectByUserid" resultMap="String"
-		parameterType="int">
+	<select id="selectByUserid" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
 		select
 		courseid
-		from t_course
-		where userid = #{id}
+		from t_user_course
+		where userid = #{userid}
 	</select>
 	
 </mapper>

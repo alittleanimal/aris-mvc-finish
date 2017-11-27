@@ -3,13 +3,18 @@ package com.accenture.aris.inventory.business.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.accenture.aris.core.support.ServiceResult;
 import com.accenture.aris.inventory.business.entity.CourseEntity;
 import com.accenture.aris.inventory.business.repository.CourseRepository;
 import com.accenture.aris.inventory.business.service.CourseService;
 
+@Service
 public class CourseServiceImpl implements CourseService{
 
+	@Autowired
 	private CourseRepository courseRepository;
 	@Override
 	public ServiceResult<CourseEntity> selectCourse(String userid) {

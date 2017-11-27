@@ -26,7 +26,7 @@
 	</delete>
 	
 	<update id="update"
-		parameterType="com.accenture.aris.inventory.business.repository.GradeRepository">
+		parameterType="com.accenture.aris.inventory.business.entity.GradeEntity">
 		update t_grade
 		set zpcj = #{zpcj},
 		pscj = #{pscj},
@@ -35,7 +35,7 @@
 	</update>
 	
 	<insert id="insert"
-		parameterType="com.accenture.aris.inventory.business.repository.GradeRepository">
+		parameterType="com.accenture.aris.inventory.business.entity.GradeEntity">
 		insert into t_grade (userid,cno,pscj,qmcj,zpcj)
 		values
 		(#{userid}, #{cno}},

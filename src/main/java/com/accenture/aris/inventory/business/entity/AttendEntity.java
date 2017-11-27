@@ -2,7 +2,7 @@ package com.accenture.aris.inventory.business.entity;
 
 import java.sql.Date;
 
-public class AttendanceEntity {
+public class AttendEntity {
 	private int id;
 	private String attendenceId;
 	private int courseId;
@@ -11,9 +11,9 @@ public class AttendanceEntity {
 	private Date startDate;
 	private Date endDate;
 	
-	public AttendanceEntity(){}
+	public AttendEntity(){}
 	
-	public AttendanceEntity(int id, String attendenceId, int courseId, String userId, String state, Date startDate,
+	public AttendEntity(int id, String attendenceId, int courseId, String userId, String state, Date startDate,
 			Date endDate) {
 		this.id = id;
 		this.attendenceId = attendenceId;
@@ -26,7 +26,7 @@ public class AttendanceEntity {
 	
 	
 	
-	public AttendanceEntity(int id, String attendenceId, int courseId, Date startDate, Date endDate) {
+	public AttendEntity(int id, String attendenceId, int courseId, Date startDate, Date endDate) {
 		super();
 		this.id = id;
 		this.attendenceId = attendenceId;
@@ -37,7 +37,7 @@ public class AttendanceEntity {
 
 
 
-	public AttendanceEntity(int id, String attendenceId, int courseId, String userId, String state) {
+	public AttendEntity(int id, String attendenceId, int courseId, String userId, String state) {
 		super();
 		this.id = id;
 		this.attendenceId = attendenceId;

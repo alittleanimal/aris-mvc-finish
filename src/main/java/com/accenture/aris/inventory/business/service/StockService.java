@@ -13,6 +13,4 @@ public interface StockService extends Serializable {
 	public ServiceResult<Boolean> updateStockService(StockEntity stockEntity,StockTrackEntity stockTrackEntity);
 	public ServiceResult<Boolean> updateStockService(StockEntity stockEntity);
 	public ServiceResult<Boolean> deleteStockService(int id);
-	public void test();
-	
 }

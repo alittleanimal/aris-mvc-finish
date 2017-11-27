@@ -1,9 +1,12 @@
 package com.accenture.aris.inventory.business.repository;
 
-import com.accenture.aris.inventory.business.entity.AttendanceEntity;
+import org.springframework.stereotype.Repository;
 
+import com.accenture.aris.inventory.business.entity.AttendEntity;
+
+@Repository
 public interface AttendRepository {
-	int insertIntoAttendance(AttendanceEntity record);
-	int insertIntoAttendDetail(AttendanceEntity record);
-	int updateAttendDetail(AttendanceEntity record);
+	int insertIntoAttendance(AttendEntity record);
+	int insertIntoAttendDetail(AttendEntity record);
+	int updateAttendDetail(AttendEntity record);
 }
