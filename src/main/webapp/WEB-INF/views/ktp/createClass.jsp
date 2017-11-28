@@ -135,27 +135,27 @@
 								</div>
 								<div class="panel-body">
 								    <spring:url var="getInviteCode" value="/stock/view/classInformationupdate" />
-									<form:form id="InviteCodeForm" class="form-horizontal" action="${getInviteCode}" method="post" modelAttribute ="InviteCodeForm">
+									<form:form id="CourseInfoForm" class="form-horizontal" action="${getInviteCode}" method="post" modelAttribute ="InviteCodeForm">
           								<div class="control-group">
           									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 课程名称： </label>
-             								 <input id="quantity" name="quantity" class="form-control input-lg" placeholder="例：数据结构" type="text" 
+             								 <input id="cname" name="cname" class="form-control input-lg" placeholder="例：数据结构" type="text" 
              								 	style="height:40px;width:250px;float:right">
           								</div>
           								<div class="control-group">
           									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 学期： </label>
-             								 <input id="quantity" name="quantity" class="form-control input-lg" placeholder="例：2016学年冬季" type="text" 
+             								 <input id="semester" name="semester" class="form-control input-lg" placeholder="例：2016学年冬季" type="text" 
              								 	style="height:40px;width:250px;float:right">
           								</div><div class="control-group">
           									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 学分： </label>
-             								 <input id="quantity" name="quantity" class="form-control input-lg" placeholder="例：2" type="text" 
+             								 <input id="credit" name="credit" class="form-control input-lg" placeholder="例：2" type="text" 
              								 	style="height:40px;width:250px;float:right">
           								</div><div class="control-group">
           									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 学时： </label>
-             								 <input id="quantity" name="quantity" class="form-control input-lg" placeholder="例： 四1-2" type="text" 
+             								 <input id="time" name="time" class="form-control input-lg" placeholder="例： 四1-2" type="text" 
              								 	style="height:40px;width:250px;float:right">
           								</div><div class="control-group">
-          									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 教室： </label>
-             								 <input id="quantity" name="quantity" class="form-control input-lg" placeholder="例： CJ104" type="text" 
+          									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 邀请码： </label>
+             								 <input id="invitation" name="invitation" class="form-control input-lg" placeholder="例： abc11" type="text" 
              								 	style="height:40px;width:250px;float:right">
           								</div>
           								

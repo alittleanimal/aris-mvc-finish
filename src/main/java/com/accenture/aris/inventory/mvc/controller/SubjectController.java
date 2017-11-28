@@ -28,6 +28,7 @@ import com.accenture.aris.inventory.business.entity.CourseEntity;
 import com.accenture.aris.inventory.business.entity.StockInfoEntity;
 import com.accenture.aris.inventory.business.service.CourseService;
 import com.accenture.aris.inventory.business.service.StockService;
+import com.accenture.aris.inventory.mvc.form.CourseInfoForm;
 import com.accenture.aris.inventory.mvc.form.InvitationCodeForm;
 import com.accenture.aris.inventory.mvc.form.StockSearchForm;
 import com.accenture.aris.inventory.mvc.form.StockUpdateForm;
@@ -103,8 +104,16 @@ public class SubjectController {
 	}
 
 	@RequestMapping(value = "/view/classInformationupdate")
-	public String classInformationupdate(){
+	public String classInformationupdate(HttpServletRequest request,CourseInfoForm courseInfoForm){
 		//else return "ktp/joinClass";
+		String userName= new ServletAuthenticatedLocator(request).getAuthenicatedName();
+		
+		CourseEntity courseEntity = new CourseEntity();
+		BeanUtils.copyProperties(courseInfoForm, courseEntity);
+		courseEntity.setTeacher(userName);
+		Boolean createResult = courseService.AddCourse(courseEntity);
+
+		
 		return "ktp/createClassComplete";
 	}
 }

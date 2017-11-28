@@ -43,12 +43,12 @@ public class CourseServiceImpl implements CourseService{
 		}
 	}
 	@Override
-	public ServiceResult<Boolean> AddCourse(CourseEntity courseEntity) {
+	public Boolean AddCourse(CourseEntity courseEntity) {
 		int result = courseRepository.insertCourse(courseEntity);
 		if (result != 0) {
-			return new ServiceResult<Boolean>(true); 
+			return true; 
 		}else {
-			return new ServiceResult<Boolean>(false);
+			return false;
 		}
 	}
 	

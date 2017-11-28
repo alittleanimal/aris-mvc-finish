@@ -35,6 +35,17 @@ public class ServletAuthenticatedLocator implements AuthenticatedLocator {
         return null;
     }
     
+    public String getAuthenicatedName() {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            AuthenticatorData data = (AuthenticatorData)session.getAttribute(this.sessionUserData);
+            if (data != null) {
+                return data.getName();
+            }
+        }
+        return null;
+    }
+    
     public boolean isAuthenticated() {
         if (getAuthenicatedUser() != null) {
             return true;
