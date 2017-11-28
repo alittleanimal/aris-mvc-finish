@@ -107,12 +107,15 @@ public class SubjectController {
 	public String classInformationupdate(HttpServletRequest request,CourseInfoForm courseInfoForm){
 		//else return "ktp/joinClass";
 		String userName= new ServletAuthenticatedLocator(request).getAuthenicatedName();
+		String userID= new ServletAuthenticatedLocator(request).getAuthenicatedUser();
+		String invitation = courseInfoForm.getInvitation();
 		
 		CourseEntity courseEntity = new CourseEntity();
 		BeanUtils.copyProperties(courseInfoForm, courseEntity);
 		courseEntity.setTeacher(userName);
+		
 		Boolean createResult = courseService.AddCourse(courseEntity);
-
+		courseService.AddStudent(userID, invitation);
 		
 		return "ktp/createClassComplete";
 	}

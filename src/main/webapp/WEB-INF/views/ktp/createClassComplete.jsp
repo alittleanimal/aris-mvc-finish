@@ -96,8 +96,9 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
+						<spring:url var="subjectUrl" value="/stock/view/subjectIndex"/>
 						<li><a href="index.jsp" class=""><i class="lnr lnr-home"></i> <span>主页</span></a></li>
-						<li><a href="elements.jsp" class="active"><i class="lnr lnr-code"></i> <span>课程</span></a></li>
+						<li><a href="subjectUrl"class="active"><i class="lnr lnr-code"></i> <span>课程</span></a></li>
 						<li><a href="charts.jsp" class=""><i class="lnr lnr-chart-bars"></i> <span>考勤</span></a></li>
 						<li><a href="panels.jsp" class=""><i class="lnr lnr-cog"></i> <span>公告</span></a></li>
 						<li><a href="notifications.jsp" class=""><i class="lnr lnr-alarm"></i> <span>成绩</span></a></li>
