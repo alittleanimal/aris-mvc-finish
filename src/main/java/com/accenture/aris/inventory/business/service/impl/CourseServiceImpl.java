@@ -17,7 +17,7 @@ public class CourseServiceImpl implements CourseService{
 	@Autowired
 	private CourseRepository courseRepository;
 	@Override
-	public ServiceResult<CourseEntity> selectCourse(String userid) {
+	public ServiceResult<List<CourseEntity>> selectCourse(String userid) {
 		List<Integer> courseList = courseRepository.selectByUserid(userid);
 		List<CourseEntity> courseEntityList = new ArrayList<CourseEntity>();
 		CourseEntity courseEntity = new CourseEntity();
@@ -25,8 +25,8 @@ public class CourseServiceImpl implements CourseService{
 			courseEntity = courseRepository.selectByCno(course);
 			courseEntityList.add(courseEntity);
 		}	
-		ServiceResult<CourseEntity> result = new ServiceResult<CourseEntity>();
-		result.setAttribute("course", courseEntity);
+		ServiceResult<List<CourseEntity>> result = new ServiceResult<List<CourseEntity>>();
+		result.setAttribute("course", courseEntityList);
 		return result;
 	}
 	@Override

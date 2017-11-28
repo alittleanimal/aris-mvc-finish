@@ -6,6 +6,10 @@ public class CourseEntity {
 	private String invitation;
 	private String teacher;
 	private int credit;
+	private String semester;
+	private String time;
+	private String classroom;
+	
 	public int getCno() {
 		return cno;
 	}
@@ -35,6 +39,24 @@ public class CourseEntity {
 	}
 	public void setCredit(int credit) {
 		this.credit = credit;
+	}
+	public String getSemester() {
+		return semester;
+	}
+	public void setSemester(String semester) {
+		this.semester = semester;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public String getClassroom() {
+		return classroom;
+	}
+	public void setClassroom(String classroom) {
+		this.classroom = classroom;
 	}
 	
 	
