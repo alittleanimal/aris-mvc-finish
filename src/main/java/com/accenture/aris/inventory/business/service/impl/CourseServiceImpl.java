@@ -26,17 +26,20 @@ public class CourseServiceImpl implements CourseService{
 			courseEntityList.add(courseEntity);
 		}	
 		ServiceResult<List<CourseEntity>> result = new ServiceResult<List<CourseEntity>>();
-		result.setAttribute("course", courseEntityList);
+		result.setAttribute("courses", courseEntityList);
 		return result;
 	}
 	@Override
-	public ServiceResult<Boolean> AddStudent(Integer userid, String invitation) {
+	public Boolean AddStudent(String userid, String invitation) {
 		CourseEntity courseEntity = courseRepository.selectByInvitation(invitation);
+		if (null == courseEntity) {
+			return false; 
+		}
 		int result = courseRepository.insertStudent(userid, courseEntity.getCno(), courseEntity.getInvitation());
 		if (result != 0) {
-			return new ServiceResult<Boolean>(true); 
+			return true; 
 		}else {
-			return new ServiceResult<Boolean>(false);
+			return false;
 		}
 	}
 	@Override

@@ -3,6 +3,8 @@ package com.accenture.aris.core.authorization;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.accenture.aris.core.authentication.AuthenticatorData;
+
 
 public class ServletAuthorisedLocator implements AuthorisedLocator {
 
@@ -28,7 +30,10 @@ public class ServletAuthorisedLocator implements AuthorisedLocator {
     public String getAuthorisedRole() {
         HttpSession session = request.getSession(false);
         if (session != null) {
-            return (String)session.getAttribute(this.sessionRoleData);
+        	AuthorizationData data = (AuthorizationData)session.getAttribute(this.sessionRoleData);
+            if (data != null) {
+                return data.getRoleId();
+            }
         }
         return null;
     }

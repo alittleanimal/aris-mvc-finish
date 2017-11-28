@@ -7,6 +7,6 @@ import com.accenture.aris.inventory.business.entity.CourseEntity;
 
 public interface CourseService {
 	public ServiceResult<List<CourseEntity>> selectCourse(String userid);
-	public ServiceResult<Boolean> AddStudent(Integer userid, String invitation);
+	public Boolean AddStudent(String userid, String invitation);
 	public ServiceResult<Boolean> AddCourse(CourseEntity courseEntity);
 }

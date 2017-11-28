@@ -83,7 +83,7 @@ public class LoginController {
             
             LOGGER.debug("login Successful.");
             //return "redirect:top";
-            return "redirect:stock";
+            return "redirect:stock/view/subjectIndex";
             
         } catch(Throwable th) {
             if (th instanceof org.mybatis.spring.MyBatisSystemException) {
