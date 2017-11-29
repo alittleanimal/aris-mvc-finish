@@ -98,7 +98,7 @@
 					<ul class="nav">
 						<spring:url var="subjectUrl" value="/stock/view/subjectIndex"/>
 						<li><a href="index.jsp" class=""><i class="lnr lnr-home"></i> <span>主页</span></a></li>
-						<li><a href="subjectUrl"class="active"><i class="lnr lnr-code"></i> <span>课程</span></a></li>
+						<li><a href="${subjectUrl}"class="active"><i class="lnr lnr-code"></i> <span>课程</span></a></li>
 						<li><a href="charts.jsp" class=""><i class="lnr lnr-chart-bars"></i> <span>考勤</span></a></li>
 						<li><a href="panels.jsp" class=""><i class="lnr lnr-cog"></i> <span>公告</span></a></li>
 						<li><a href="notifications.jsp" class=""><i class="lnr lnr-alarm"></i> <span>成绩</span></a></li>
@@ -130,44 +130,46 @@
 						<div class="col-md-6">
 							
 							<!-- CLASS1 -->
-             				<c:set var = "newClass" value = "${newClass}"/>							
-              				<div class="panel">
+							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">完成</h3>
+									<h3 class="panel-title">填写课程信息</h3>
 								</div>
 								<div class="panel-body">
-									<div class="control-group">
+								    <spring:url var="getInviteCode" value="/stock/view/classInformationupdate" />
+									<form:form id="CourseInfoForm" class="form-horizontal" action="${getInviteCode}" method="post" modelAttribute ="InviteCodeForm">
+          								<div class="control-group">
           									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 课程名称： </label>
-             								 <input id="cname" name="cname" class="form-control input-lg"   readonly="readonly" placeholder="<c:out value="${newClass.cname}"></c:out>" type="text" 
-             								 	style="height:40px;width:250px;float:right" >
+             								 <input id="cname" name="cname" class="form-control input-lg" placeholder="例：数据结构" type="text" 
+             								 	style="height:40px;width:250px;float:right">
           								</div>
           								<div class="control-group">
           									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 学期： </label>
-             								 <input id="semester" name="semester" class="form-control input-lg"  readonly="readonly" placeholder="<c:out value="${newClass.semester}"></c:out>" type="text" 
+             								 <input id="semester" name="semester" class="form-control input-lg" placeholder="例：2016学年冬季" type="text" 
              								 	style="height:40px;width:250px;float:right">
           								</div><div class="control-group">
           									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 学分： </label>
-             								 <input id="credit" name="credit" class="form-control input-lg"  readonly="readonly" placeholder="<c:out value="${newClass.credit}"></c:out>" type="text" 
+             								 <input id="credit" name="credit" class="form-control input-lg" placeholder="例：2" type="text" 
              								 	style="height:40px;width:250px;float:right">
           								</div><div class="control-group">
           									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 学时： </label>
-             								 <input id="time" name="time" class="form-control input-lg"  readonly="readonly" placeholder="<c:out value="${newClass.time}"></c:out>" type="text" 
+             								 <input id="time" name="time" class="form-control input-lg" placeholder="例： 四1-2" type="text" 
              								 	style="height:40px;width:250px;float:right">
           								</div>
-									<div>
-										<label style="line-height: 40px; " class="label label-success">&nbsp;&nbsp;&nbsp; 邀请码： </label>
-             							<input id="credit" name="credit" class="form-control input-lg" readonly="readonly" placeholder="<c:out value="${newClass.invitation}"></c:out>" type="text" 
-             								 	style="height:40px;width:250px;float:right;color: green">								
-									</div>
-									<br>
-									<div style="color: green">学生可根据邀请码加入课程</div>		
-									<br>	
-								    <div class="alert alert-success alert-dismissible" role="alert">
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<i class="fa fa-check-circle"></i> 您已成功创建课堂
-									</div>
-									<spring:url var="completeUrl" value="/stock/view/subjectIndex"/>
-              						<div style="text-align:center"><a href="${completeUrl}" class="btn btn-success"> 确认</a></div>
+          								<div style="color: red">请正确输入课程信息</div>	
+          								<div class="alert alert-danger alert-dismissible" role="alert">
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<i class="fa fa-check-circle"></i> 创建课程失败
+										</div>	
+          								
+          							<!-- submit or return button -->
+          							<div class="control-group">
+            							<div style="text-align:center" >
+              							<spring:url var="cancelUrl" value="/stock/view/subjectIndex"/>
+              							<a href="${cancelUrl}" class="btn btn-info"> 返回</a>   
+              							<button type="submit" class="btn btn-info"> 确认</button>           							
+           							    </div>
+           							</div>
+          							</form:form>
 								</div>
 							</div>
 							<!-- END CLASS1 -->

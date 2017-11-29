@@ -154,10 +154,6 @@
           									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 学时： </label>
              								 <input id="time" name="time" class="form-control input-lg" placeholder="例： 四1-2" type="text" 
              								 	style="height:40px;width:250px;float:right">
-          								</div><div class="control-group">
-          									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 邀请码： </label>
-             								 <input id="invitation" name="invitation" class="form-control input-lg" placeholder="例： abc11" type="text" 
-             								 	style="height:40px;width:250px;float:right">
           								</div>
           								
           							<!-- submit or return button -->

@@ -20,6 +20,7 @@
     <mvc:annotation-driven />
     <mvc:resources mapping="/resources/**" location="/resources/" />
     <mvc:default-servlet-handler/>
+    
 
     <mvc:interceptors>
         <beans:bean class="com.accenture.aris.core.interceptor.SessionCheckInterceptor" />
