@@ -97,10 +97,10 @@
 				<nav>
 					<ul class="nav">
 						<spring:url var="subjectUrl" value="/stock/view/subjectIndex"/>
-						<spring:url var="attendUrl" value="/stock/view/attendIndex"/>						
+						<spring:url var="attendUrl" value="/stock/view/attendIndex"/>
 						<li><a href="index.jsp" class=""><i class="lnr lnr-home"></i> <span>主页</span></a></li>
-						<li><a href="${subjectUrl}"class="active"><i class="lnr lnr-code"></i> <span>课程</span></a></li>
-						<li><a href="${attendUrl}" class=""><i class="lnr lnr-chart-bars"></i> <span>考勤</span></a></li>
+						<li><a href="${subjectUrl}"class=""><i class="lnr lnr-code"></i> <span>课程</span></a></li>
+						<li><a href="${attendUrl}" class="active"><i class="lnr lnr-chart-bars"></i> <span>考勤</span></a></li>
 						<li><a href="panels.jsp" class=""><i class="lnr lnr-cog"></i> <span>公告</span></a></li>
 						<li><a href="notifications.jsp" class=""><i class="lnr lnr-alarm"></i> <span>成绩</span></a></li>
 						<li>
@@ -126,7 +126,7 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content" align="left">
 				<div class="container-fluid" align="left">
-					<h3 class="page-title">课程</h3>
+					<h3 class="page-title">考勤</h3>
 					<div class="row">
 						<div class="col-md-6">
 							
@@ -180,7 +180,7 @@
 							<!-- PANEL NO PADDING -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">选课状态</h3>
+									<h3 class="panel-title">考勤状态</h3>
 									<div class="right">
 										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
 										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
@@ -189,7 +189,7 @@
 								<div class="panel-body no-padding bg-primary text-center">
 									<div class="padding-top-30 padding-bottom-30">
 										<i class="fa fa-thumbs-o-up fa-5x"></i>
-										<h3>已完成所有选课</h3>
+										<h3>考勤正在进行中</h3>
 									</div>
 								</div>
 							</div>
