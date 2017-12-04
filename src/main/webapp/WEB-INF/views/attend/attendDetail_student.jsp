@@ -97,10 +97,10 @@
 				<nav>
 					<ul class="nav">
 						<spring:url var="subjectUrl" value="/stock/view/subjectIndex"/>
-						<spring:url var="attendUrl" value="/stock/view/attendIndex"/>						
+						<spring:url var="attendUrl" value="/stock/view/attendIndex"/>
 						<li><a href="index.jsp" class=""><i class="lnr lnr-home"></i> <span>主页</span></a></li>
-						<li><a href="${subjectUrl}"class="active"><i class="lnr lnr-code"></i> <span>课程</span></a></li>
-						<li><a href="${attendUrl}" class=""><i class="lnr lnr-chart-bars"></i> <span>考勤</span></a></li>
+						<li><a href="${subjectUrl}"class=""><i class="lnr lnr-code"></i> <span>课程</span></a></li>
+						<li><a href="${attendUrl}" class="active"><i class="lnr lnr-chart-bars"></i> <span>考勤</span></a></li>
 						<li><a href="panels.jsp" class=""><i class="lnr lnr-cog"></i> <span>公告</span></a></li>
 						<li><a href="notifications.jsp" class=""><i class="lnr lnr-alarm"></i> <span>成绩</span></a></li>
 						<li>
@@ -126,61 +126,56 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content" align="left">
 				<div class="container-fluid" align="left">
-					<h3 class="page-title">课程</h3>
-					<div class="row">
-						<div class="col-md-6">
-							
-				
-							<!-- CLASS2 -->
- 							<c:forEach var="course" items="${courses}">						
- 								<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title"><c:out value="${course.cname}"></c:out></h3>
-								</div>
-								<div class="panel-body">
-									<tr>
-										<td>学分  :  </td>
-                 						<td><c:out value="${course.credit}"></c:out></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
-                 						<td>老师  :  </td>
-                  						<td><c:out value="${course.teacher}"></c:out></td>																	
-									</tr>								
-									<br>
-									<br>
-									<tr>
-										<td>邀请码  :  </td>
-                 						<td><c:out value="${course.invitation}"></c:out></td>									
-									</tr>	
-									<br>
-									<br>
-									<tr>
-										<div class="alert alert-info alert-dismissible" role="alert">
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<i class="fa fa-info-circle"></i> 课程正在进行中
-									</div>	
-									</tr>
-								</div>
-							</div>
-							</c:forEach>
-							<!-- END CLASS2 -->
-						</div>	
-						<div class="col-md-6">
-							<!-- BUTTONS -->
-							<div class="panel" align="left">
-								<div class="panel-body">
-									<p class="demo-button">
-										<div style="font-size:20px ;float:left">我的课程</div>
-										<spring:url var="createClassUrl" value="/stock/view/createClass"/>
-										<div style="float: right">
-										<a href="${createClassUrl}" class="btn btn-primary">+ 创建课堂</a></div>
-																		
-									</p>
-								</div>
-							</div>
-							
-							<!-- PANEL NO PADDING -->
+					<h3 class="page-title">考勤</h3>
+							<!-- TABLE STRIPED -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">选课状态</h3>
+									<h3 class="panel-title">Striped Row</h3>
+								</div>
+								<div class="panel-body">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>序号</th>
+												<th>课程名程</th>
+												<th>考勤次数</th>
+												<th>状态</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>1</td>
+												<td>Steve</td>
+												<td>Jobs</td>
+												<td>@steve</td>
+												<td>@steve</td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>Simon</td>
+												<td>Philips</td>
+												<td>@simon</td>
+												<td>@steve</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>Jane</td>
+												<td>Doe</td>
+												<td>@jane</td>
+												<td>@steve</td>
+											</tr>
+										</tbody>
+									</table>
+								    <spring:url var="attendIndexUrl" value="/stock/view/attendIndex"/>
+									<div style="text-align: center"><a href="${attendIndexUrl}" class="btn btn-primary">返回</a></div>
+								</div>
+							</div>
+							<!-- END TABLE STRIPED -->
+					<!-- PANEL NO PADDING -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">考勤状态</h3>
 									<div class="right">
 										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
 										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
@@ -188,14 +183,12 @@
 								</div>
 								<div class="panel-body no-padding bg-primary text-center">
 									<div class="padding-top-30 padding-bottom-30">
-										<i class="fa fa-thumbs-o-up fa-5x"></i>
-										<h3>已完成所有选课</h3>
+										<i class="fa fa-calendar fa-5x"></i>
+										<h3>考勤正在进行中</h3>
 									</div>
 								</div>
 							</div>
 							<!-- END PANEL NO PADDING -->
-						</div>				
-					</div>
 				</div>
 			</div>
 			<!-- END MAIN CONTENT -->

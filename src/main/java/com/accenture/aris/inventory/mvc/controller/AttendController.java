@@ -52,11 +52,57 @@ public class AttendController {
 	
 	
 	@RequestMapping(value = "/view/attendIndex")
-	public String subjectIndexInit(@Valid Model uiModel, SessionStatus status,HttpServletRequest request){
+	public String attendIndexInit(@Valid Model uiModel, SessionStatus status,HttpServletRequest request){
 		//return "ktp/subjectIndex";
-
-		return "ktp/attend/attendIndex";
+		String userID= new ServletAuthenticatedLocator(request).getAuthenicatedUser();
+        String roleID= new ServletAuthorisedLocator(request).getAuthorisedRole();
+        
+		ServiceResult<List<CourseEntity>> serviceResult = courseService.selectCourse(userID);
+		List courseEntity = (List) serviceResult.getAttribute("courses");
+		
+		uiModel.addAttribute("courses", courseEntity);
+		if (roleID.equals("S0001")){
+			return "attend/attendIndex_student";
+		}
+		else if (roleID.equals("T0001")){
+			return "attend/attendIndex_teacher";
+		}
+		status.setComplete();
+		return "attend/attendIndex";
 	}
 	
+	@RequestMapping(value = "/view/attendDetail/{cno}")
+	public String attendenceDetail(@Valid StockSearchForm stockSearchForm,HttpServletRequest request,
+			BindingResult result, Model uiModel){
+        String roleID= new ServletAuthorisedLocator(request).getAuthorisedRole();
+        if (roleID.equals("S0001")){
+			return "attend/attendDetail_student";
+		}
+		else if (roleID.equals("T0001")){
+			return "attend/attendDetail_teacher";
+		}
+		return "attend/attendDetail_student";
+	}
+	
+	@RequestMapping(value = "/view/doAttend/{cno}")
+	public String doAttend(@Valid StockSearchForm stockSearchForm,HttpServletRequest request,
+			BindingResult result, Model uiModel){
+        String roleID= new ServletAuthorisedLocator(request).getAuthorisedRole();
+        if (roleID.equals("S0001")){
+			return "attend/doAttend";
+		}
+		else if (roleID.equals("T0001")){
+			return "attend/doAttend";
+		}
+		return "attend/doAttend";
+	}
+	
+	@RequestMapping(value = "/view/attendCodeupdate")
+	public String attendCodeupdate(@Valid InvitationCodeForm inviteCodeForm,HttpServletRequest request,
+			BindingResult result, Model uiModel){
+        String roleID= new ServletAuthorisedLocator(request).getAuthorisedRole();
+
+		return "attend/doAttendComplete";
+	}
 	
 }
