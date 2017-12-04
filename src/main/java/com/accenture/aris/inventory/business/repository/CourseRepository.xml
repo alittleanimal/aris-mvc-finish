@@ -79,4 +79,15 @@
 
 	</select>
 	
+	<select id="selectByUserid" resultType="com.accenture.aris.inventory.business.entity.AttendEntity"
+		parameterType="java.lang.Integer">
+		select
+		courseid as courseId,
+		userid as userId,
+		invitation as attendenceId
+		from t_user_course
+		where courseid = #{cno}
+
+	</select>
+	
 </mapper>

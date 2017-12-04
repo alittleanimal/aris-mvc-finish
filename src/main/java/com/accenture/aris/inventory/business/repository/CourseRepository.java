@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.accenture.aris.inventory.business.entity.AttendEntity;
 import com.accenture.aris.inventory.business.entity.CourseEntity;
 
 @Repository
@@ -15,4 +16,5 @@ public interface CourseRepository {
 	int deleteByCno(int cno);
 	List<Integer> selectByUserid(String userid);
 	int insertStudent(String userid, int cno, String invite);
+	List<AttendEntity> selectAttendByCno(int cno);
 }

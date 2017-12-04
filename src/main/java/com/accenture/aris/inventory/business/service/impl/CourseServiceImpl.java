@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.accenture.aris.core.support.ServiceResult;
+import com.accenture.aris.inventory.business.entity.AttendEntity;
 import com.accenture.aris.inventory.business.entity.CourseEntity;
 import com.accenture.aris.inventory.business.repository.CourseRepository;
 import com.accenture.aris.inventory.business.service.CourseService;
@@ -51,5 +52,4 @@ public class CourseServiceImpl implements CourseService{
 			return false;
 		}
 	}
-	
 }

@@ -8,5 +8,7 @@ import com.accenture.aris.inventory.business.entity.AttendEntity;
 public interface AttendRepository {
 	int insertIntoAttendance(AttendEntity record);
 	int insertIntoAttendDetail(AttendEntity record);
-	int updateAttendDetail(AttendEntity record);
+	int updateAttendState(String attendenceID,String userID,String state);
+	AttendEntity selectAllAttendByCno(Integer cno);
+	int selectAttendCourseById(String userid);
 }
