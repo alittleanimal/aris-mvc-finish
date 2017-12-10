@@ -14,7 +14,6 @@ import com.accenture.aris.inventory.business.service.AttendService;
 
 @Service
 public class AttendServiceImpl implements AttendService {
-
 	@Autowired
 	private AttendRepository attendRepository;
 	@Autowired
