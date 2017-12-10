@@ -79,7 +79,7 @@
 
 	</select>
 	
-	<select id="selectByUserid" resultType="com.accenture.aris.inventory.business.entity.AttendEntity"
+	<select id="selectAttendByCno" resultType="com.accenture.aris.inventory.business.entity.AttendEntity"
 		parameterType="java.lang.Integer">
 		select
 		courseid as courseId,

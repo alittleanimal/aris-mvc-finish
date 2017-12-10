@@ -35,7 +35,17 @@
 			and t.course_id = d.course_id
 			and t.user_id = #{userid}
 			and d.status = 1
-
+	</select>
+	
+	<select id="selectUnAttendCourseById" resultType="java.lang.Integer"
+		parameterType="java.lang.String">
+		select
+		d.course_id
+		from t_attendence_detail t, t_attendence d
+		where t.attendence_id = d.attendence_id 
+			and t.course_id = d.course_id
+			and t.user_id = #{userid}
+			and d.status = 0
 	</select>
 	
 	<insert id="insertIntoAttendance" parameterType="com.accenture.aris.inventory.business.entity.AttendEntity" >
@@ -54,4 +64,11 @@
 		where attendence_id = #{0} AND user_id = #{1}
 	</update>
 	
+	<select id="MaxCount" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		select
+		max(count)
+		from t_attendence
+		where course_id = #{cno}
+	</select>
 </mapper>
