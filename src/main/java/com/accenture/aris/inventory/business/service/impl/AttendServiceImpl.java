@@ -3,6 +3,7 @@ package com.accenture.aris.inventory.business.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.accenture.aris.inventory.business.entity.AttendEntity;
 import com.accenture.aris.inventory.business.entity.CourseEntity;
@@ -10,6 +11,7 @@ import com.accenture.aris.inventory.business.repository.AttendRepository;
 import com.accenture.aris.inventory.business.repository.CourseRepository;
 import com.accenture.aris.inventory.business.service.AttendService;
 
+@Service
 public class AttendServiceImpl implements AttendService{
 
 	@Autowired
