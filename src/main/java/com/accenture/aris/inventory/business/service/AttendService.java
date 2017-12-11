@@ -20,4 +20,14 @@ public interface AttendService {
 	public boolean IsAttend(String userID, String attendenceID);
 
 	public boolean IsNotAttend(String userID, String attendenceID);
+	
+	public boolean endAttend(int cno, int count);
+	
+	public List<AttendEntity> selectAttendByIdCno(int cno, String user,String state) ;
+	
+	public List<AttendEntity> selectAttendByCnoCount(int cno, int count);
+	
+	public List<AttendEntity> selectAttendenceDetail(Integer cno, int status);
+	
+	public int MaxCount(int cno);
 }

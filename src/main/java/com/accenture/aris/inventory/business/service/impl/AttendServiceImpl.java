@@ -96,4 +96,42 @@ public class AttendServiceImpl implements AttendService {
 		return courseEntityList;
 	}
 
+	@Override
+	public boolean endAttend(int cno, int count) {
+		int status = 0;
+		int temp = attendRepository.updateAttendStateByCnoCount(cno, count, status);
+		if (temp!=0) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public List<AttendEntity> selectAttendByIdCno(int cno, String user, String state) {
+		List<AttendEntity> attendEntities = new ArrayList<AttendEntity>();
+		attendEntities = attendRepository.selectAttendByIdCno(cno, user, state);
+		return attendEntities;
+	}
+
+	@Override
+	public List<AttendEntity> selectAttendByCnoCount(int cno, int count) {
+		List<AttendEntity> attendEntities = new ArrayList<AttendEntity>();
+		attendEntities = attendRepository.selectAttendByCnoCount(cno, count);
+		return attendEntities;
+	}
+
+	@Override
+	public List<AttendEntity> selectAttendenceDetail(Integer cno, int status) {
+		List<AttendEntity> attendEntities = new ArrayList<AttendEntity>();
+		attendEntities = attendRepository.selectAttendenceDetail(cno, status);
+		return attendEntities;
+	}
+
+	@Override
+	public int MaxCount(int cno) {
+		int temp = attendRepository.MaxCount(cno);
+		return temp;
+	}
+
 }

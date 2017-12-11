@@ -52,4 +52,11 @@ public class CourseServiceImpl implements CourseService{
 			return false;
 		}
 	}
+	
+	@Override
+	public String selectCourseNameById(int cno) {
+		CourseEntity courseEntity = new CourseEntity();
+		courseEntity = courseRepository.selectByCno(cno);
+		return courseEntity.getCname();
+	}
 }

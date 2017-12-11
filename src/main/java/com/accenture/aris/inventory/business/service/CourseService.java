@@ -10,4 +10,5 @@ public interface CourseService {
 	public ServiceResult<List<CourseEntity>> selectCourse(String userid);
 	public Boolean AddStudent(String userid, String invitation);
 	public Boolean AddCourse(CourseEntity courseEntity);
+	public String selectCourseNameById(int cno);
 }

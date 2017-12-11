@@ -15,6 +15,8 @@ public interface AttendRepository {
 
 	int updateAttendState(String attendenceID, String userID, String state);
 
+	int updateAttendStateByCnoCount(int cno, int count, int status);
+
 	List<AttendEntity> selectAllAttendByCno(Integer cno);
 
 	List<Integer> selectAttendCourseById(String userid);
@@ -22,4 +24,10 @@ public interface AttendRepository {
 	List<Integer> selectUnAttendCourseById(String userid);
 
 	int MaxCount(int cno);
+
+	List<AttendEntity> selectAttendByIdCno(int cno, String user, String state);
+
+	List<AttendEntity> selectAttendByCnoCount(int cno, int count);
+	
+	List<AttendEntity> selectAttendenceDetail(Integer cno, int status);
 }
