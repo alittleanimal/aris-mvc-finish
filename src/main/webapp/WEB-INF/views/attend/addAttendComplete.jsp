@@ -130,102 +130,30 @@
 					<div class="row">
 						<div class="col-md-6">
 							
-				
-							<!-- CLASS2 -->
- 							<c:forEach var="unattendingCourse" items="${unattendingCourse}">						
- 								<div class="panel">
-								<div class="panel-heading">
-									<div style="font-size:20px ;float:left"><c:out value="${unattendingCourse.cname}"></c:out></div>									
-									<spring:url var="attendDetailUrl" value="/stock/view/attendDetail/${unattendingCourse.cno}"/>
-									<spring:url var="addAttendUrl" value="/stock/view/addAttend/${unattendingCourse.cno}"/>									
-									<div style="float: right">
-								    <a href="${attendDetailUrl}" class="btn btn-info">考勤情况</a>
-								    <a href="${addAttendUrl}" class="btn btn-info">+ 发起签到</a></div>
-								</div>
-								<br>
-								<div class="panel-body">
-									<tr>
-										<td>学分  :  </td>
-                 						<td><c:out value="${unattendingCourse.credit}"></c:out></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
-                 						<td>老师  :  </td>
-                  						<td><c:out value="${unattendingCourse.teacher}"></c:out></td>																	
-									</tr>								
-									<br>
-									<br>
-									<tr>
-										<td>邀请码  :  </td>
-                 						<td><c:out value="${unattendingCourse.invitation}"></c:out></td>									
-									</tr>	
-									<br>
-									<br>
-									<tr>
-										<div class="alert alert-info alert-dismissible" role="alert">
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<i class="fa fa-info-circle"></i> 课程没有正在进行的签到
-									</div>	
-									</tr>
-								</div>
-							</div>
-							</c:forEach>
-							<!-- END CLASS2 -->
-						</div>	
-						<div class="col-md-6">
-							
 							<!-- CLASS1 -->
- 							<c:forEach var="attendingCourse" items="${attendingCourse}">						
- 								<div class="panel">
-								<div class="panel-heading">
-									<div style="font-size:20px ;float:left"><c:out value="${attendingCourse.cname}"></c:out></div>									
-									<spring:url var="attendDetailUrl" value="/stock/view/attendDetail/${attendingCourse.cno}"/>
-									<div style="float: right">
-								    <a href="${attendDetailUrl}" class="btn btn-success">考勤情况</a>
-								    </div>
-								</div>
-								<br>
-								<div class="panel-body">
-									<tr>
-										<td>学分  :  </td>
-                 						<td><c:out value="${attendingCourse.credit}"></c:out></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
-                 						<td>老师  :  </td>
-                  						<td><c:out value="${attendingCourse.teacher}"></c:out></td>																	
-									</tr>								
-									<br>
-									<br>
-									<tr>
-										<td>邀请码  :  </td>
-                 						<td><c:out value="${attendingCourse.invitation}"></c:out></td>									
-									</tr>	
-									<br>
-									<br>
-									<tr>
-										<div class="alert alert-success alert-dismissible" role="alert">
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<i class="fa fa-info-circle"></i> 课程正在签到中
-									</div>	
-									</tr>
-								</div>
-							</div>
-							</c:forEach>
-							<!-- END CLASS1 -->
-						</div>				
-					</div>
-					<!-- PANEL NO PADDING -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">考勤状态</h3>
-									<div class="right">
-										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
-										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
-									</div>
+									<h3 class="panel-title">完成</h3>
 								</div>
-								<div class="panel-body no-padding bg-primary text-center">
-									<div class="padding-top-30 padding-bottom-30">
-										<i class="fa fa-calendar fa-5x"></i>
-										<h3>考勤正在进行中</h3>
+								<div class="panel-body">
+								    <c:set var = "attendenceId" value = "${attendenceId}"/>   
+								
+									<div style="color: green">
+												发起签到成功，签到码为：${attendenceId}
 									</div>
+								    <div class="alert alert-success alert-dismissible" role="alert">
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<i class="fa fa-check-circle"></i> 发起签到成功
+									</div>
+									<spring:url var="completeUrl" value="/stock/view/attendIndex"/>
+              						<div style="text-align:center"><a href="${completeUrl}" class="btn btn-success"> 返回</a></div>
 								</div>
 							</div>
-							<!-- END PANEL NO PADDING -->
+							<!-- END CLASS1 -->
+							
+							
+						</div>				
+					</div>						
 				</div>
 			</div>
 			<!-- END MAIN CONTENT -->

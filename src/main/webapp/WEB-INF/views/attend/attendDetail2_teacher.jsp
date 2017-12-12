@@ -127,88 +127,47 @@
 			<div class="main-content" align="left">
 				<div class="container-fluid" align="left">
 					<h3 class="page-title">考勤</h3>
-					<div class="row">
-						<div class="col-md-6">
-							
-				
-							<!-- CLASS2 -->
- 							<c:forEach var="unattendingCourse" items="${unattendingCourse}">						
- 								<div class="panel">
+							<!-- TABLE STRIPED -->
+							<div class="panel">
 								<div class="panel-heading">
-									<div style="font-size:20px ;float:left"><c:out value="${unattendingCourse.cname}"></c:out></div>									
-									<spring:url var="attendDetailUrl" value="/stock/view/attendDetail/${unattendingCourse.cno}"/>
-									<spring:url var="addAttendUrl" value="/stock/view/addAttend/${unattendingCourse.cno}"/>									
-									<div style="float: right">
-								    <a href="${attendDetailUrl}" class="btn btn-info">考勤情况</a>
-								    <a href="${addAttendUrl}" class="btn btn-info">+ 发起签到</a></div>
+									<c:set var = "CourseName" value = "${CourseName}"/> 
+									
+									<h3 class="panel-title"><c:out value="${CourseName}"></c:out></h3>
 								</div>
-								<br>
 								<div class="panel-body">
-									<tr>
-										<td>学分  :  </td>
-                 						<td><c:out value="${unattendingCourse.credit}"></c:out></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
-                 						<td>老师  :  </td>
-                  						<td><c:out value="${unattendingCourse.teacher}"></c:out></td>																	
-									</tr>								
-									<br>
-									<br>
-									<tr>
-										<td>邀请码  :  </td>
-                 						<td><c:out value="${unattendingCourse.invitation}"></c:out></td>									
-									</tr>	
-									<br>
-									<br>
-									<tr>
-										<div class="alert alert-info alert-dismissible" role="alert">
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<i class="fa fa-info-circle"></i> 课程没有正在进行的签到
-									</div>	
-									</tr>
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>考勤次数</th>
+												<th>姓名</th>
+												<th>签到状态</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="AttendDetail" items="${AttendDetail}" >			
+											<tr>
+												<spring:url var="doUrl" value="/stock/view/isAttend/${AttendDetail.attendenceId}${AttendDetail.userId}"/>												
+												<spring:url var="undoUrl" value="/stock/view/isNotAttend/${AttendDetail.attendenceId}${AttendDetail.userId}" />
+												<td><c:out value="${AttendDetail.count}"></c:out></td>
+												<td><c:out value="${AttendDetail.userId}"></c:out></td>
+												<td style="color: green"><c:out value="${AttendDetail.state}"></c:out></td>
+
+												<td>
+													<a href="${doUrl}" class="btn"> <i class="fa fa-upload"></i></a>&nbsp;&nbsp;&nbsp;
+													<a href="${undoUrl}" class="btn"> <i class="fa fa-download"></i></a>&nbsp;&nbsp;&nbsp;
+												</td>
+											</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+									<c:set var = "cno" value = "${cno}"/> 
+								    <spring:url var="attendIndexUrl" value="/stock/view/attendDetail/${cno}"/>
+									<div style="text-align: center"><a href="${attendIndexUrl}" class="btn btn-primary">返回</a></div>
 								</div>
 							</div>
-							</c:forEach>
-							<!-- END CLASS2 -->
-						</div>	
-						<div class="col-md-6">
-							
-							<!-- CLASS1 -->
- 							<c:forEach var="attendingCourse" items="${attendingCourse}">						
- 								<div class="panel">
-								<div class="panel-heading">
-									<div style="font-size:20px ;float:left"><c:out value="${attendingCourse.cname}"></c:out></div>									
-									<spring:url var="attendDetailUrl" value="/stock/view/attendDetail/${attendingCourse.cno}"/>
-									<div style="float: right">
-								    <a href="${attendDetailUrl}" class="btn btn-success">考勤情况</a>
-								    </div>
-								</div>
-								<br>
-								<div class="panel-body">
-									<tr>
-										<td>学分  :  </td>
-                 						<td><c:out value="${attendingCourse.credit}"></c:out></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
-                 						<td>老师  :  </td>
-                  						<td><c:out value="${attendingCourse.teacher}"></c:out></td>																	
-									</tr>								
-									<br>
-									<br>
-									<tr>
-										<td>邀请码  :  </td>
-                 						<td><c:out value="${attendingCourse.invitation}"></c:out></td>									
-									</tr>	
-									<br>
-									<br>
-									<tr>
-										<div class="alert alert-success alert-dismissible" role="alert">
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<i class="fa fa-info-circle"></i> 课程正在签到中
-									</div>	
-									</tr>
-								</div>
-							</div>
-							</c:forEach>
-							<!-- END CLASS1 -->
-						</div>				
-					</div>
+							<!-- END TABLE STRIPED -->
 					<!-- PANEL NO PADDING -->
 							<div class="panel">
 								<div class="panel-heading">

@@ -99,8 +99,7 @@ public class AttendController {
 			List TeacherAttendingDetail = attendService.selectAttendenceDetail(cno, 1);
 			List TeacherUnAttendingDetail = attendService.selectAttendenceDetail(cno, 0);
 			
-			String CourseName = courseService.selectCourseNameById(cno);        	
-        	uiModel.addAttribute("CourseName", CourseName);
+			String CourseName = courseService.selectCourseNameById(cno); 
 			
         	uiModel.addAttribute("CourseName", CourseName);
         	uiModel.addAttribute("TeacherAttendingDetail", TeacherAttendingDetail);
@@ -110,6 +109,63 @@ public class AttendController {
 		}
 		return "attend/attendDetail_student";
 	}
+	
+	@RequestMapping(value = "/view/attendDetailTeacher/{attendInfo}")
+	public String attendDetailTeacher(@Valid @PathVariable("attendInfo") String attendInfo,HttpServletRequest request, Model uiModel){
+		int cno = Integer.parseInt(attendInfo.substring(0, 4));
+		
+		int count = Integer.parseInt(attendInfo.substring(4));
+		String CourseName = courseService.selectCourseNameById(cno); 
+	        
+        List AttendDetail = attendService.selectAttendByCnoCount(cno, count);
+        
+    	uiModel.addAttribute("cno", cno);
+    	uiModel.addAttribute("CourseName", CourseName);
+        uiModel.addAttribute("AttendDetail", AttendDetail);
+        
+		return "attend/attendDetail2_teacher";
+	}
+	
+
+	@RequestMapping(value = "/view/endAttend/{attendInfo}")
+	public String endAttend(@Valid @PathVariable("attendInfo") String attendInfo,HttpServletRequest request, Model uiModel){
+		int cno = Integer.parseInt(attendInfo.substring(0, 4));		
+		int count = Integer.parseInt(attendInfo.substring(4));
+		
+		boolean endResult = attendService.endAttend(cno, count);
+        
+		List TeacherAttendingDetail = attendService.selectAttendenceDetail(cno, 1);
+		List TeacherUnAttendingDetail = attendService.selectAttendenceDetail(cno, 0);
+		
+		String CourseName = courseService.selectCourseNameById(cno); 
+		
+    	uiModel.addAttribute("CourseName", CourseName);
+    	uiModel.addAttribute("TeacherAttendingDetail", TeacherAttendingDetail);
+    	uiModel.addAttribute("TeacherUnAttendingDetail", TeacherUnAttendingDetail);
+
+		return "attend/attendDetail_teacher";
+	}
+	
+	@RequestMapping(value = "/view/isAttend/{changeInfo}")
+	public String isAttend(@Valid @PathVariable("changeInfo") String changeInfo, HttpServletRequest request, Model uiModel){        
+        String attendenceId = changeInfo.substring(0, 5);
+        String userID = changeInfo.substring(5);
+        boolean changeResult = attendService.IsAttend(userID, attendenceId);
+      
+        
+		return "attend/attendIndex_teacher";
+	}
+	
+	@RequestMapping(value = "/view/isNotAttend/{changeInfo}")
+	public String isNotAttend(@Valid @PathVariable("changeInfo") String changeInfo, HttpServletRequest request, Model uiModel){
+	    String attendenceId = changeInfo.substring(0, 5);
+	    String userID = changeInfo.substring(5);     
+        boolean changeResult = attendService.IsNotAttend(userID, attendenceId);
+      
+        
+		return "attend/attendIndex_teacher";
+	}
+	
 	
 	@RequestMapping(value = "/view/doAttend/{cno}")
 	public String doAttend(@Valid @PathVariable("cno") int cno, HttpServletRequest request, Model uiModel){
@@ -122,6 +178,35 @@ public class AttendController {
         uiModel.addAttribute("count", count);
         
 		return "attend/doAttend";
+	}
+	
+	@RequestMapping(value = "/view/addAttend/{cno}")
+	public String addAttend(@Valid @PathVariable("cno") int cno, HttpServletRequest request, Model uiModel){
+        
+        String CourseName = courseService.selectCourseNameById(cno);
+        int count = attendService.MaxCount(cno)+1;
+        
+        uiModel.addAttribute("CourseName", CourseName);
+        uiModel.addAttribute("count", count);
+        uiModel.addAttribute("cno", cno);
+
+        
+		return "attend/addAttend";
+	}
+	
+	@RequestMapping(value = "/view/addAttendConfirm/{cno}")
+	public String addAttendConfirm(@Valid @PathVariable("cno") int cno, HttpServletRequest request, Model uiModel){
+        String attendenceId = getRandomCharAndNumr(5);
+        Boolean addResult = attendService.AddAttendence(cno, attendenceId);
+        uiModel.addAttribute("attendenceId", attendenceId);
+        if (addResult.equals(true)){
+        	return "attend/addAttendComplete";
+		}
+		else if (addResult.equals(false)){
+			return "attend/addAttendFailed";
+		}
+
+		return "attend/addAttendComplete";
 	}
 	
 	@RequestMapping(value = "/view/attendCodeupdate")
@@ -139,5 +224,20 @@ public class AttendController {
 
 		return "attend/doAttendComplete";
 	}
+	
+	public static String getRandomCharAndNumr(Integer length) {  
+	    String str = "";  
+	    Random random = new Random();  
+	    for (int i = 0; i < length; i++) {  
+	        boolean b = random.nextBoolean();  
+	        if (b) { // 字符串  
+	            // int choice = random.nextBoolean() ? 65 : 97; 取得65大写字母还是97小写字母  
+	            str += (char) (65 + random.nextInt(26));// 取得大写字母  
+	        } else { // 数字  
+	            str += String.valueOf(random.nextInt(10));  
+	        }  
+	    }  
+	    return str;  
+	}  
 	
 }

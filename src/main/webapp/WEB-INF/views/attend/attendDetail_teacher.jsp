@@ -144,31 +144,31 @@
 											</tr>
 										</thead>
 										<tbody>
-											
+											<c:set var = "CourseName" value = "${CourseName}"/> 
 											<c:forEach var="TeacherAttendingDetail" items="${TeacherAttendingDetail}" >			
 											<tr>
-												<spring:url var="viewUrl" value="/stock/attendDetailTeacher/${TeacherAttendingDetail.courseId}/${TeacherAttendingDetail.count}" />
-												<spring:url var="editUrl" value="/stock/endAttend/${TeacherAttendingDetail.courseId}/${TeacherAttendingDetail.count}" />
+												<spring:url var="viewUrl" value="/stock/view/attendDetailTeacher/${TeacherAttendingDetail.courseId}${TeacherAttendingDetail.count}" />												
+												<spring:url var="editUrl" value="/stock/view/endAttend/${TeacherAttendingDetail.courseId}${TeacherAttendingDetail.count}" />
 												<td><c:out value="${CourseName}"></c:out></td>
 												<td><c:out value="${TeacherAttendingDetail.count}"></c:out></td>
 												<td style="color: green">正在签到</td>
 												<td><c:out value="${TeacherAttendingDetail.attendenceId}"></c:out></td>
 												<td>
 													<a href="${viewUrl}" class="btn"> <i class="icon-search icon"></i></a>&nbsp;&nbsp;&nbsp;
-													<a href="${editUrl}" class="btn"> <i class="icon-edit icon"></i></a>&nbsp;&nbsp;&nbsp;
+													<a href="${editUrl}" class="btn"> <i class="lnr lnr-trash"></i></a>&nbsp;&nbsp;&nbsp;
 												</td>
 											</tr>
 											</c:forEach>
 											
 											<c:forEach var="TeacherUnAttendingDetail" items="${TeacherUnAttendingDetail}" varStatus="status">	
-											<c:set var = "CourseName" value = "${CourseName}"/>         		
+											        		
 											<tr>
-												<spring:url var="viewUrl" value="/stock/attendDetailTeacher/${TeacherAttendingDetail.courseId}/${TeacherAttendingDetail.count}" />
-												<spring:url var="editUrl" value="/stock/endAttend/${TeacherAttendingDetail.courseId}/${TeacherAttendingDetail.count}" />
+												<spring:url var="viewUrl" value="/stock/view/attendDetailTeacher/${TeacherUnAttendingDetail.courseId}${TeacherUnAttendingDetail.count}" />
+												<spring:url var="editUrl" value="/stock/view/endAttend/${TeacherUnAttendingDetail.courseId}${TeacherUnAttendingDetail.count}" />
 												<td><c:out value="${CourseName}"></c:out></td>
-												<td><c:out value="${TeacherAttendingDetail.count}"></c:out></td>
+												<td><c:out value="${TeacherUnAttendingDetail.count}"></c:out></td>
 												<td style="color: red">已结束</td>
-												<td><c:out value="${TeacherAttendingDetail.attendenceId}"></c:out></td>
+												<td><c:out value="${TeacherUnAttendingDetail.attendenceId}"></c:out></td>
 												<td>
 													<a href="${viewUrl}" class="btn"> <i class="icon-search icon"></i></a>&nbsp;&nbsp;&nbsp;
 												</td>

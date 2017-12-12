@@ -107,7 +107,7 @@
 	
 	<update id="updateAttendStateByCnoCount">
 		update t_attendence
-		set status = #{2},
+		set status = #{2}
 		where
 		course_id = #{0} AND count = #{1}
 	</update>
