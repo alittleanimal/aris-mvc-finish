@@ -136,12 +136,12 @@
 									<h3 class="panel-title">失败</h3>
 								</div>
 								<div class="panel-body">
-								    <div class="alert alert-success alert-dismissible" role="alert">
+								    <div class="alert alert-danger alert-dismissible" role="alert">
 										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 										<i class="fa fa-check-circle"></i> 签到失败，请核对签到码
 									</div>
-									<spring:url var="returnUrl" value="/stock/view/doAttend"/>
-              						<div style="text-align:center"><a href="${returnUrl}" class="btn btn-success"> 返回</a></div>
+									<spring:url var="returnUrl" value="/stock/view/attendIndex"/>
+              						<div style="text-align:center"><a href="${returnUrl}" class="btn btn-danger"> 返回</a></div>
 								</div>
 							</div>
 							<!-- END CLASS1 -->

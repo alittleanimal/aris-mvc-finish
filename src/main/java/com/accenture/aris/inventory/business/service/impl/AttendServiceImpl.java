@@ -83,7 +83,7 @@ public class AttendServiceImpl implements AttendService {
 
 	@Override
 	public List<CourseEntity> SelectUnAttendingCourse(String userID) {
-		List<Integer> courseIdList = attendRepository.selectAttendCourseById(userID);
+		List<Integer> courseIdList = attendRepository.selectUnAttendCourseById(userID);
 		CourseEntity courseEntity = new CourseEntity();
 		List<CourseEntity> courseEntityList = new ArrayList<CourseEntity>();
 		if (courseIdList == null) {

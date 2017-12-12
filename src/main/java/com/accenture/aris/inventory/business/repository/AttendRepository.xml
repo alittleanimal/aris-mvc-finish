@@ -61,50 +61,52 @@
 
 	<select id="selectAttendCourseById" resultType="java.lang.Integer"
 		parameterType="java.lang.String">
-		select
-		d.course_id
-		from t_attendence_detail t,
+		select distinct
+		courseid
+		from t_user_course t,
 		t_attendence d
-		where t.attendence_id = d.attendence_id
-		and t.course_id = d.course_id
-		and t.user_id = #{userid}
+		where  t.courseid = d.course_id
+		and t.userid = #{userid}
 		and d.status = 1
+
 	</select>
 
 	<select id="selectUnAttendCourseById" resultType="java.lang.Integer"
 		parameterType="java.lang.String">
-		select
-		d.course_id
-		from t_attendence_detail t,
+		select 	courseid from t_user_course x
+		where x.userID=#{userid} and x.courseID not in 
+		(select distinct
+		courseid
+		from t_user_course t,
 		t_attendence d
-		where t.attendence_id = d.attendence_id
-		and t.course_id = d.course_id
-		and t.user_id = #{userid}
-		and d.status = 0
+		where  t.courseid = d.course_id
+		and t.userid = #{userid}
+		and d.status = 1)
+
 	</select>
 
 	<insert id="insertIntoAttendance"
 		parameterType="com.accenture.aris.inventory.business.entity.AttendEntity">
-		insert into t_attendance(attendence_id, course_id, status, count)
+		insert into t_attendence(attendence_id, course_id, status, count)
 		values(#{attendenceId}, #{courseId}, #{status}, #{count})
 	</insert>
 
 	<insert id="insertIntoAttendDetail"
 		parameterType="com.accenture.aris.inventory.business.entity.AttendEntity">
-		insert into t_attendance_detail(attendence_id, course_id, user_id,
+		insert into t_attendence_detail(attendence_id, course_id, user_id,
 		state)
 		values(#{attendenceId}, #{courseId}, #{userId}, #{state})
 	</insert>
 
 	<update id="updateAttendState">
-		update t_attendance_detail
-		set state = #{2},
+		update t_attendence_detail
+		set state = #{2}
 		where
 		attendence_id = #{0} AND user_id = #{1}
 	</update>
 	
 	<update id="updateAttendStateByCnoCount">
-		update t_attendance
+		update t_attendence
 		set status = #{2},
 		where
 		course_id = #{0} AND count = #{1}

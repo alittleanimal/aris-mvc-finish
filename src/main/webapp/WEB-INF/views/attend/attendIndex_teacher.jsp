@@ -132,11 +132,11 @@
 							
 				
 							<!-- CLASS2 -->
- 							<c:forEach var="course" items="${courses}">						
+ 							<c:forEach var="unattendingCourse" items="${unattendingCourse}">						
  								<div class="panel">
 								<div class="panel-heading">
-									<div style="font-size:20px ;float:left"><c:out value="${course.cname}"></c:out></div>									
-									<spring:url var="attendDetailUrl" value="/stock/view/attendDetail/${course.cno}"/>
+									<div style="font-size:20px ;float:left"><c:out value="${unattendingCourse.cname}"></c:out></div>									
+									<spring:url var="attendDetailUrl" value="/stock/view/attendDetail/${unattendingCourse.cno}"/>
 									<div style="float: right">
 								    <a href="${attendDetailUrl}" class="btn btn-info">考勤情况</a></div>
 								</div>
@@ -144,15 +144,15 @@
 								<div class="panel-body">
 									<tr>
 										<td>学分  :  </td>
-                 						<td><c:out value="${course.credit}"></c:out></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
+                 						<td><c:out value="${unattendingCourse.credit}"></c:out></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
                  						<td>老师  :  </td>
-                  						<td><c:out value="${course.teacher}"></c:out></td>																	
+                  						<td><c:out value="${unattendingCourse.teacher}"></c:out></td>																	
 									</tr>								
 									<br>
 									<br>
 									<tr>
 										<td>邀请码  :  </td>
-                 						<td><c:out value="${course.invitation}"></c:out></td>									
+                 						<td><c:out value="${unattendingCourse.invitation}"></c:out></td>									
 									</tr>	
 									<br>
 									<br>
@@ -170,29 +170,29 @@
 						<div class="col-md-6">
 							
 							<!-- CLASS1 -->
- 							<c:forEach var="course" items="${courses}">						
+ 							<c:forEach var="attendingCourse" items="${attendingCourse}">						
  								<div class="panel">
 								<div class="panel-heading">
-									<div style="font-size:20px ;float:left"><c:out value="${course.cname}"></c:out></div>									
-									<spring:url var="attendDetailUrl" value="/stock/view/attendDetail/${course.cno}"/>
-									<spring:url var="attendUrl" value="/stock/view/doAttend/${course.cno}"/>
+									<div style="font-size:20px ;float:left"><c:out value="${attendingCourse.cname}"></c:out></div>									
+									<spring:url var="attendDetailUrl" value="/stock/view/attendDetail/${attendingCourse.cno}"/>
+									<spring:url var="attendUrl" value="/stock/view/doAttend/${attendingCourse.cno}"/>
 									<div style="float: right">
 								    <a href="${attendDetailUrl}" class="btn btn-success">考勤情况</a>
-								    <a href="${attendUrl}" class="btn btn-success">+ 签到</a></div>
+								    <a href="${attendUrl}" class="btn btn-success">+ 发起签到</a></div>
 								</div>
 								<br>
 								<div class="panel-body">
 									<tr>
 										<td>学分  :  </td>
-                 						<td><c:out value="${course.credit}"></c:out></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
+                 						<td><c:out value="${attendingCourse.credit}"></c:out></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
                  						<td>老师  :  </td>
-                  						<td><c:out value="${course.teacher}"></c:out></td>																	
+                  						<td><c:out value="${attendingCourse.teacher}"></c:out></td>																	
 									</tr>								
 									<br>
 									<br>
 									<tr>
 										<td>邀请码  :  </td>
-                 						<td><c:out value="${course.invitation}"></c:out></td>									
+                 						<td><c:out value="${attendingCourse.invitation}"></c:out></td>									
 									</tr>	
 									<br>
 									<br>

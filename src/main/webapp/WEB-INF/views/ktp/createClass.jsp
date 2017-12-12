@@ -136,7 +136,7 @@
 								</div>
 								<div class="panel-body">
 								    <spring:url var="getInviteCode" value="/stock/view/classInformationupdate" />
-									<form:form id="CourseInfoForm" class="form-horizontal" action="${getInviteCode}" method="post" modelAttribute ="InviteCodeForm">
+									<form:form id="courseInfoForm" class="form-horizontal" action="${getInviteCode}" method="post" modelAttribute ="courseInfoForm">
           								<div class="control-group">
           									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 课程名称： </label>
              								 <input id="cname" name="cname" class="form-control input-lg" placeholder="例：数据结构" type="text" 

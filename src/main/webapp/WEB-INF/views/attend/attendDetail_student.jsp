@@ -130,41 +130,36 @@
 							<!-- TABLE STRIPED -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Striped Row</h3>
+									<h3 class="panel-title">考勤情况</h3>
 								</div>
 								<div class="panel-body">
 									<table class="table table-striped">
 										<thead>
 											<tr>
-												<th>序号</th>
 												<th>课程名程</th>
 												<th>考勤次数</th>
 												<th>状态</th>
-												<th>操作</th>
 											</tr>
 										</thead>
 										<tbody>
+											
+											<c:forEach var="StudentunAttendingDetail" items="${StudentunAttendingDetail}" >			
 											<tr>
-												<td>1</td>
-												<td>Steve</td>
-												<td>Jobs</td>
-												<td>@steve</td>
-												<td>@steve</td>
+												<td><c:out value="${CourseName}"></c:out></td>
+												<td><c:out value="${StudentunAttendingDetail.count}"></c:out></td>
+												<td style="color: red">缺勤</td>
 											</tr>
+											</c:forEach>
+											
+											<c:forEach var="StudentAttendingDetail" items="${StudentAttendingDetail}" varStatus="status">	
+											<c:set var = "CourseName" value = "${CourseName}"/>         		
 											<tr>
-												<td>2</td>
-												<td>Simon</td>
-												<td>Philips</td>
-												<td>@simon</td>
-												<td>@steve</td>
+												<td><c:out value="${CourseName}"></c:out></td>
+												<td><c:out value="${StudentAttendingDetail.count}"></c:out></td>
+												<td style="color: green">出席</td>
 											</tr>
-											<tr>
-												<td>3</td>
-												<td>Jane</td>
-												<td>Doe</td>
-												<td>@jane</td>
-												<td>@steve</td>
-											</tr>
+											</c:forEach>
+											
 										</tbody>
 									</table>
 								    <spring:url var="attendIndexUrl" value="/stock/view/attendIndex"/>
