@@ -13,7 +13,7 @@ public class CourseInfoForm implements Serializable{
 	private String cname;
 	private String invitation;
 	private String teacher;
-	private int credit;
+	private String credit;
 	private String semester;
 	private String time;
 	private String classroom;
@@ -49,10 +49,10 @@ public class CourseInfoForm implements Serializable{
 	public void setTeacher(String teacher) {
 		this.teacher = teacher;
 	}
-	public int getCredit() {
+	public String getCredit() {
 		return credit;
 	}
-	public void setCredit(int credit) {
+	public void setCredit(String credit) {
 		this.credit = credit;
 	}
 	public String getSemester() {

@@ -97,9 +97,10 @@
 				<nav>
 					<ul class="nav">
 						<spring:url var="subjectUrl" value="/stock/view/subjectIndex"/>
+						<spring:url var="attendUrl" value="/stock/view/attendIndex"/>
 						<li><a href="index.jsp" class=""><i class="lnr lnr-home"></i> <span>主页</span></a></li>
-						<li><a href="${subjectUrl}"class="active"><i class="lnr lnr-code"></i> <span>课程</span></a></li>
-						<li><a href="charts.jsp" class=""><i class="lnr lnr-chart-bars"></i> <span>考勤</span></a></li>
+						<li><a href="${subjectUrl}"class=""><i class="lnr lnr-code"></i> <span>课程</span></a></li>
+						<li><a href="${attendUrl}" class="active"><i class="lnr lnr-chart-bars"></i> <span>考勤</span></a></li>
 						<li><a href="panels.jsp" class=""><i class="lnr lnr-cog"></i> <span>公告</span></a></li>
 						<li><a href="notifications.jsp" class=""><i class="lnr lnr-alarm"></i> <span>成绩</span></a></li>
 						<li>
@@ -125,53 +126,65 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content" align="left">
 				<div class="container-fluid" align="left">
-					<h3 class="page-title">创建课堂</h3>
-					<div class="row">
-						<div class="col-md-6">
-							
-							<!-- CLASS1 -->
+					<h3 class="page-title">考勤</h3>
+							<!-- TABLE STRIPED -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">填写课程信息</h3>
+									<c:set var = "CourseName" value = "${CourseName}"/> 
+									
+									<h3 class="panel-title"><c:out value="${CourseName}"></c:out></h3>
 								</div>
 								<div class="panel-body">
-								    <spring:url var="getInviteCode" value="/stock/view/classInformationupdate" />
-									<form:form id="courseInfoForm" class="form-horizontal" action="${getInviteCode}" method="post" modelAttribute ="courseInfoForm">
-          								<div class="control-group">
-          									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 课程名称： </label>
-             								 <input id="cname" name="cname" class="form-control input-lg" placeholder="例：数据结构" type="text" 
-             								 	style="height:40px;width:250px;float:right">
-          								</div>
-          								<div class="control-group">
-          									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 学期： </label>
-             								 <input id="semester" name="semester" class="form-control input-lg" placeholder="例：2016学年冬季" type="text" 
-             								 	style="height:40px;width:250px;float:right">
-          								</div><div class="control-group">
-          									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 学分： </label>
-             								 <input id="credit" name="credit" class="form-control input-lg" placeholder="例：2" type="text" 
-             								 	style="height:40px;width:250px;float:right">
-          								</div><div class="control-group">
-          									 <label style="line-height: 40px;">&nbsp;&nbsp;&nbsp; 学时： </label>
-             								 <input id="time" name="time" class="form-control input-lg" placeholder="例： 四1-2" type="text" 
-             								 	style="height:40px;width:250px;float:right">
-          								</div>
-          								
-          							<!-- submit or return button -->
-          							<div class="control-group">
-            							<div style="text-align:center" >
-              							<spring:url var="cancelUrl" value="/stock/view/subjectIndex"/>
-              							<a href="${cancelUrl}" class="btn btn-info"> 返回</a>   
-              							<button type="submit" class="btn btn-info"> 确认</button>           							
-           							    </div>
-           							</div>
-          							</form:form>
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>考勤次数</th>
+												<th>姓名</th>
+												<th>签到状态</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="AttendDetail" items="${AttendDetail}" >			
+											<tr>
+												<spring:url var="doUrl" value="/stock/view/isAttend/${AttendDetail.attendenceId}${AttendDetail.userId}"/>												
+												<spring:url var="undoUrl" value="/stock/view/isNotAttend/${AttendDetail.attendenceId}${AttendDetail.userId}" />
+												<td><c:out value="${AttendDetail.count}"></c:out></td>
+												<td><c:out value="${AttendDetail.userId}"></c:out></td>
+												<td style="color: green"><c:out value="${AttendDetail.state}"></c:out></td>
+
+												<td>
+													<a href="${doUrl}" class="btn"> <i class="fa fa-upload"></i></a>&nbsp;&nbsp;&nbsp;
+													<a href="${undoUrl}" class="btn"> <i class="fa fa-download"></i></a>&nbsp;&nbsp;&nbsp;
+												</td>
+											</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+									<c:set var = "cno" value = "${cno}"/> 
+								    <spring:url var="attendIndexUrl" value="/stock/view/attendDetail/${cno}"/>
+									<div style="text-align: center"><a href="${attendIndexUrl}" class="btn btn-primary">返回</a></div>
 								</div>
 							</div>
-							<!-- END CLASS1 -->
-							
-							
-						</div>				
-					</div>
+							<!-- END TABLE STRIPED -->
+					<!-- PANEL NO PADDING -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">考勤状态</h3>
+									<div class="right">
+										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+									</div>
+								</div>
+								<div class="panel-body no-padding bg-primary text-center">
+									<div class="padding-top-30 padding-bottom-30">
+										<i class="fa fa-calendar fa-5x"></i>
+										<h3>考勤正在进行中</h3>
+									</div>
+								</div>
+							</div>
+							<!-- END PANEL NO PADDING -->
 				</div>
 			</div>
 			<!-- END MAIN CONTENT -->

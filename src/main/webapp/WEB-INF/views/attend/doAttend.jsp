@@ -137,12 +137,14 @@
 								</div>
 								<div class="panel-body">
 								    <spring:url var="getAttendCode" value="/stock/view/attendCodeupdate" />
-									<form:form id="InviteCodeForm" class="form-horizontal" action="${getAttendCode}" method="post" modelAttribute ="InviteCodeForm">
+								    <c:set var = "CourseName" value = "${CourseName}"/>   
+								    <c:set var = "count" value = "${count}"/>   
+									<form:form id="attendenceForm" class="form-horizontal" action="${getAttendCode}" method="post" modelAttribute ="attendenceForm">
           								<div class="control-group">
-             								 <input id="invitation" name="invitation" class="form-control input-lg" placeholder="请输入课程签到码" type="text" 
+             								 <input id="attendenceId" name="attendenceId" class="form-control input-lg" placeholder="请输入课程签到码" type="text" 
              								 	style="height:40px">
              								 <div style="color: green">
-												您正在进行数据结构的第一次签到
+												您正在进行<c:out value="${CourseName}"></c:out>的第<c:out value="${count}"></c:out>次签到
 											 </div>
           								</div>
           							

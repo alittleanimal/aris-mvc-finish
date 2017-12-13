@@ -38,13 +38,17 @@ public class AttendServiceImpl implements AttendService {
 	public boolean AddAttendence(int cno, String attendenceID) {
 		int result1 = 0, result2 = 0;
 		List<AttendEntity> attendEntityList = courseRepository.selectAttendByCno(cno);
+		for (AttendEntity attendEntity:attendEntityList)
+		{
+			attendEntity.setAttendenceId(attendenceID);
+		}
 		int count = attendRepository.MaxCount(cno) + 1;
 		AttendEntity attendEntity = attendEntityList.get(0);
 		attendEntity.setStatus(1);
 		attendEntity.setCount(count);
 		result1 = attendRepository.insertIntoAttendance(attendEntity);
 		for (AttendEntity attendList : attendEntityList) {
-			attendList.setState("attend");
+			attendList.setState("notattend");
 			result2 = attendRepository.insertIntoAttendDetail(attendList);
 		}
 		if (result1 != 0 && result2 != 0) {

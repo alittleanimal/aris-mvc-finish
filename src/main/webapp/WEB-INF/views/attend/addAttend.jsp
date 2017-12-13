@@ -130,72 +130,39 @@
 					<div class="row">
 						<div class="col-md-6">
 							
-				
-							<!-- CLASS2 -->
- 							<c:forEach var="course" items="${courses}">						
- 								<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title"><c:out value="${course.cname}"></c:out></h3>
-								</div>
-								<div class="panel-body">
-									<tr>
-										<td>学分  :  </td>
-                 						<td><c:out value="${course.credit}"></c:out></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
-                 						<td>老师  :  </td>
-                  						<td><c:out value="${course.teacher}"></c:out></td>																	
-									</tr>								
-									<br>
-									<br>
-									<tr>
-										<td>邀请码  :  </td>
-                 						<td><c:out value="${course.invitation}"></c:out></td>									
-									</tr>	
-									<br>
-									<br>
-									<tr>
-										<div class="alert alert-info alert-dismissible" role="alert">
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<i class="fa fa-info-circle"></i> 课程正在进行中
-									</div>	
-									</tr>
-								</div>
-							</div>
-							</c:forEach>
-							<!-- END CLASS2 -->
-						</div>	
-						<div class="col-md-6">
-							<!-- BUTTONS -->
-							<div class="panel" align="left">
-								<div class="panel-body">
-									<p class="demo-button">
-										<div style="font-size:20px ;float:left">我的课程</div>
-										<spring:url var="createClassUrl" value="/stock/view/createClass"/>
-										<div style="float: right">
-										<a href="${createClassUrl}" class="btn btn-primary">+ 创建课堂</a></div>
-																		
-									</p>
-								</div>
-							</div>
-							
-							<!-- PANEL NO PADDING -->
+							<!-- CLASS1 -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">考勤状态</h3>
-									<div class="right">
-										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
-										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
-									</div>
+									<h3 class="panel-title">发起签到</h3>
 								</div>
-								<div class="panel-body no-padding bg-primary text-center">
-									<div class="padding-top-30 padding-bottom-30">
-										<i class="fa fa-thumbs-o-up fa-5x"></i>
-										<h3>考勤正在进行中</h3>
-									</div>
+								<div class="panel-body">
+								 	<c:set var = "cno" value = "${cno}"/>   	
+								    <spring:url var="getAttendCode" value="/stock/view/addAttendConfirm/${cno}" />
+								    <c:set var = "CourseName" value = "${CourseName}"/>   
+								    <c:set var = "count" value = "${count}"/>  							   							     
+									<form:form id="attendenceForm" class="form-horizontal" action="${getAttendCode}" method="post" modelAttribute ="attendenceForm">
+          								<div class="control-group">             								
+             								 <div style="color: green">
+												您正在发起<c:out value="${CourseName}"></c:out>的第<c:out value="${count}"></c:out>次签到
+											 </div>
+          								</div>
+          							
+          							<!-- submit or return button -->
+          							<div class="control-group">
+            							<div class="controls">
+              							<spring:url var="cancelUrl" value="/stock/view/attendIndex"/>
+              							<a href="${cancelUrl}" class="btn btn-success"> 返回</a>   
+              							<button type="submit" class="btn btn-success"> 确认</button>           							
+           							    </div>
+           							</div>
+          							</form:form>
 								</div>
 							</div>
-							<!-- END PANEL NO PADDING -->
+							<!-- END CLASS1 -->
+							
+							
 						</div>				
-					</div>
+					</div>						
 				</div>
 			</div>
 			<!-- END MAIN CONTENT -->

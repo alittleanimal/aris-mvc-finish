@@ -113,11 +113,16 @@ public class SubjectController {
 		
 		CourseEntity courseEntity = new CourseEntity();
 		BeanUtils.copyProperties(courseInfoForm, courseEntity);
+		int credit = 0;
+		if (courseInfoForm.getCredit()!=""){
+			credit= Integer.parseInt(courseInfoForm.getCredit());
+		}
+		courseEntity.setCredit(credit);
 		
 		String cname = courseEntity.getCname();
 		String semester = courseEntity.getSemester();
 		String time = courseEntity.getTime();
-		if (cname==null || semester==null || time==null)
+		if (credit == 0||cname==null || semester==null || time==null)
 		{
 			return "ktp/createClassFailed";
 		}
