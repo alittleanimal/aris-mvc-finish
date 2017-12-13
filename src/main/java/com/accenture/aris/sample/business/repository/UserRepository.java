@@ -76,22 +76,14 @@ public interface UserRepository {
      */
     int countByEntity(UserEntity entity);
 
-    // --------------------------------------------------------------------
-    // 追加メソッド
-    // --------------------------------------------------------------------
-
-    //ログイン用
     UserEntity selectByNameAndPassword(@Param("name") String name, @Param("password") String password);
 
     UserEntity selectByName(@Param("name") String name);
 
-    //テーブル連結用
     List<UserListEntity> selectByEntityWithCode(UserListEntity record);
 
-    //テーブル連結用
     List<UserListEntity> selectByEntityWithCode(UserListEntity record,RowBounds rowBounds);
 
-    //テーブル連結用
     UserListEntity selectByPrimaryKeyWithCode(String id);
 
     List<String> selectByPrimaryKeyAmbiguous(String id);
@@ -101,4 +93,8 @@ public interface UserRepository {
     void selectByEntityWithHandler(UserEntity record, ResultHandler handler);
 
     int countByEntityWithCode(UserEntity entity);
+    
+    String getPassword(String userID);
+    
+    int changePassword(String password, String userID);
 }

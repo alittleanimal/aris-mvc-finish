@@ -25,9 +25,12 @@ public interface AttendService {
 	
 	public List<AttendEntity> selectAttendByIdCno(int cno, String user,String state) ;
 	
-	public List<AttendEntity> selectAttendByCnoCount(int cno, int count);
+	public List<AttendEntity> selectAttendByCnoCount(int cno, int count, String state);
 	
 	public List<AttendEntity> selectAttendenceDetail(Integer cno, int status);
 	
 	public int MaxCount(int cno);
+	
+	public int getCno (String attendenceID);
+	public int getCount (String attendenceID);
 }

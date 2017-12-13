@@ -38,4 +38,8 @@ public interface UserService extends Serializable {
     
     public ServiceResult<Boolean> userLoadService(File file) throws IOException;
     
+    public String getPassword(String userID);
+    
+    public boolean changePassword(String password, String userID);
+    
 }

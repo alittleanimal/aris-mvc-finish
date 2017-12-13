@@ -27,7 +27,11 @@ public interface AttendRepository {
 
 	List<AttendEntity> selectAttendByIdCno(int cno, String user, String state);
 
-	List<AttendEntity> selectAttendByCnoCount(int cno, int count);
+	List<AttendEntity> selectAttendByCnoCount(int cno, int count, String state);
 	
 	List<AttendEntity> selectAttendenceDetail(Integer cno, int status);
+	
+	int getCno (String attendenceID);
+	
+	int getCount (String attendenceID);
 }

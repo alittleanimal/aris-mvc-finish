@@ -497,5 +497,20 @@
       </if>
     </where>
   </select>
+  
+  <select id="getPassword" resultType="java.lang.String"
+		parameterType="java.lang.String">
+		select
+		password
+		from t_user
+		where id = #{userID}
+  </select>
+  
+  <update id="updateAttendState">
+		update t_user
+		set password = #{0}
+		where
+		id = #{1}
+  </update>
 
 </mapper>

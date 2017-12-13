@@ -232,4 +232,20 @@ public class UserServiceImpl implements UserService {
         }
         return new ServiceResult<Boolean>(true);
     }
+
+	@Override
+	public String getPassword(String userID) {
+		String password = userRepository.getPassword(userID);
+		return password;
+	}
+
+	@Override
+	public boolean changePassword(String password, String userID) {
+		int temp = userRepository.changePassword(password, userID);
+		if (temp != 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }

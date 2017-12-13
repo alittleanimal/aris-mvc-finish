@@ -119,9 +119,9 @@ public class AttendServiceImpl implements AttendService {
 	}
 
 	@Override
-	public List<AttendEntity> selectAttendByCnoCount(int cno, int count) {
+	public List<AttendEntity> selectAttendByCnoCount(int cno, int count, String state) {
 		List<AttendEntity> attendEntities = new ArrayList<AttendEntity>();
-		attendEntities = attendRepository.selectAttendByCnoCount(cno, count);
+		attendEntities = attendRepository.selectAttendByCnoCount(cno, count, state);
 		return attendEntities;
 	}
 
