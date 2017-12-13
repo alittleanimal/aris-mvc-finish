@@ -120,10 +120,10 @@ public class UserRegisterController {
             userRegisterForm.setId(null);
             // 入力チェックエラーの時はセッションをクリア
             status.setComplete();
-            return "user/userRegistInput";
+            return "user/userRegisterInput";
         }
         status.setComplete();
-        return "redirect:/user/detail/" + userRegisterForm.getId();
+        return "user/userRegisterSuccess" ;
     }
 
     private void setInitialValue(Model uiModel){

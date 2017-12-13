@@ -98,6 +98,8 @@
 					<ul class="nav">
 						<spring:url var="subjectUrl" value="/stock/view/subjectIndex"/>
 						<spring:url var="attendUrl" value="/stock/view/attendIndex"/>
+						<spring:url var="userUrl" value="/user/updateInput"/>
+						<spring:url var="loginUrl" value="/"/>
 						<li><a href="index.jsp" class=""><i class="lnr lnr-home"></i> <span>主页</span></a></li>
 						<li><a href="${subjectUrl}"class="active"><i class="lnr lnr-code"></i> <span>课程</span></a></li>
 						<li><a href="${attendUrl}" class=""><i class="lnr lnr-chart-bars"></i> <span>考勤</span></a></li>
@@ -107,8 +109,8 @@
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>个人信息</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
-									<li><a href="page-profile.jsp" class="">个人信息</a></li>
-									<li><a href="page-login.jsp" class="">登录</a></li>
+									<li><a href="${userUrl}" class="">个人信息</a></li>
+									<li><a href="${loginUrl}" class="">登出</a></li>
 									<li><a href="page-lockscreen.jsp  " class="">锁屏</a></li>
 								</ul>
 							</div>

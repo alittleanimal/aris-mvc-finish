@@ -2,6 +2,7 @@ package com.accenture.aris.sample.mvc.controller;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.accenture.aris.core.authentication.ServletAuthenticatedLocator;
 import com.accenture.aris.core.support.codeloader.CodeLoader;
 import com.accenture.aris.core.support.codeloader.StaticCodeLoader;
 import com.accenture.aris.core.support.message.Messages;
@@ -83,11 +85,12 @@ public class UserUpdateController {
         } finally {
             status.setComplete();
         }
-        return "redirect:/user/detail/" + userUpdateForm.getId();
+        return "user/userUpdateSuccess";
     }
 
-    @RequestMapping(value = "/updateInput/{id}")
-    public String updateInput(@PathVariable("id") String id, UserUpdateForm userUpdateForm, Model uiModel, SessionStatus status) {
+    @RequestMapping(value = "/updateInput")
+    public String updateInput(UserUpdateForm userUpdateForm, Model uiModel, SessionStatus status, HttpServletRequest request) {
+		String id= new ServletAuthenticatedLocator(request).getAuthenicatedUser();
         BeanUtils.copyProperties(userService.searchUserService(id).getResult(), userUpdateForm);
         setInitialValue(uiModel);
         status.setComplete();
@@ -100,6 +103,7 @@ public class UserUpdateController {
         status.setComplete();
         return "user/userUpdateInput";
     }
+    
     
     private void setInitialValue(Model uiModel) {
         uiModel.addAttribute("roles", roleService.selectRoleByEntity().getResult());

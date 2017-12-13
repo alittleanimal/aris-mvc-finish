@@ -187,80 +187,23 @@
 							<div class="profile-detail">
 								<div class="profile-info">
 									<div align="center">
-										<h4 class="heading">确认注册信息</h4>
+										<h4 class="heading">修改个人信息</h4>
 									</div>
 									<br>
-									        <spring:url 
-									value="/user/register" var="registerUrl"/>
-									<form:form name="userRegisterForm" action="${registerUrl}"
-										method="post" cssClass="text-center"
-										modelAttribute="userRegisterForm">
-										<table class="table table-condensed">
-											<tr>
-												<td><label for="id" class="text-right">用户ID : </label></td>
-												<td>${userRegisterForm.id}</td>
-											</tr>
-											<tr>
-												<td><label class="text-right" for="name">用户名 :
-												</label></td>
-												<td>${userRegisterForm.name}</td>
-											</tr>
-											<tr>
-												<td><label class="text-right" for="password">密码
-														: </label></td>
-												<td>${userRegisterForm.password}</td>
-											</tr>
-											<tr>
-												<td><label class="text-right" for="roleId">用户角色
-														: </label>
-												<td>${userRegisterForm.labelRoleId}<form:hidden
-														path="roleId" value="${userRegisterForm.roleId}" /></td>
-											</tr>
-											<tr>
-												<td><label class="text-right" for="email">E-mail
-														: </label></td>
-												<td>${userRegisterForm.email}</td>
-											</tr>
-											<tr>
-												<td><label for="sex" class="text-right">性别 : </label></td>
-												<td>${userRegisterForm.labelSex}<form:hidden path="sex"
-														value="${userRegisterForm.sex}" /></td>
-											</tr>
-											<tr>
-												<td><label for="nationality" class="text-right">国籍
-														: </label></td>
-												<td>${userRegisterForm.labelNationality}<form:hidden
-														path="nationality" value="${userRegisterForm.nationality}" /></td>
-											</tr>
-											<tr>
-											<tr>
-												<td><label for="text" class="text-right">个性签名 :
-												</label></td>
-												<td><c:out value="${userRegisterForm.text}" /></td>
-											</tr>
-											<tr>
-												<td><label for="defkey" class="text-right">defkey
-														: </label></td>
-												<td>${userRegisterForm.defkey}</td>
-											</tr>
-											<tr>
-												<td><label for="startdate" class="text-right">用户开始日期
-														: </label></td>
-												<td>${userRegisterForm.startDate}</td>
-											</tr>
-											<tr>
-												<td><label for="enddate" class="text-right">用户结束日期
-														: </label></td>
-												<td>${userRegisterForm.endDate}</td>
-											</tr>
-										</table>
-										<spring:url value="/user/registerReInput" var="returnUrl" />
-										<a href="${returnUrl}" class="btn"><i
-											class="icon-arrow-left icon"></i>&nbsp; 返回</a>
-										<button type="submit" class="btn btn-danger" name="register">
-											<i class="icon-ok-sign icon-white icon"></i>&nbsp; 注册
-										</button>
-									</form:form>
+									<div class="panel-body">
+										<div class="alert alert-success alert-dismissible"
+											role="alert">
+											<button type="button" class="close" data-dismiss="alert"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											<i class="fa fa-check-circle"></i> 更新个人信息成功
+										</div>
+										<spring:url var="completeUrl" value="/user/updateInput" />
+										<div style="text-align:center">
+											<a href="${completeUrl}" class="btn btn-success"> 查看</a>
+										</div>
+									</div>
 									<div class="profile-info">
 										<h4 class="heading">社交平台</h4>
 										<ul class="list-inline social-icons">
