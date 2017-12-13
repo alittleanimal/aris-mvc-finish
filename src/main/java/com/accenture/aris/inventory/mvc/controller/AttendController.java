@@ -117,11 +117,15 @@ public class AttendController {
 		int count = Integer.parseInt(attendInfo.substring(4));
 		String CourseName = courseService.selectCourseNameById(cno); 
 	        
-        List AttendDetail = attendService.selectAttendByCnoCount(cno, count);
+        List AttendDetail = attendService.selectAttendByCnoCount(cno, count,"attend");
+        List unAttendDetail = attendService.selectAttendByCnoCount(cno, count,"notAttend");
+
         
     	uiModel.addAttribute("cno", cno);
     	uiModel.addAttribute("CourseName", CourseName);
         uiModel.addAttribute("AttendDetail", AttendDetail);
+        uiModel.addAttribute("unAttendDetail", unAttendDetail);
+
         
 		return "attend/attendDetail2_teacher";
 	}
@@ -151,9 +155,22 @@ public class AttendController {
         String attendenceId = changeInfo.substring(0, 5);
         String userID = changeInfo.substring(5);
         boolean changeResult = attendService.IsAttend(userID, attendenceId);
-      
+        int cno = attendService.getCno(attendenceId);
+        int count = attendService.getCount(attendenceId);
         
-		return "attend/attendIndex_teacher";
+        String CourseName = courseService.selectCourseNameById(cno); 
+        
+        List AttendDetail = attendService.selectAttendByCnoCount(cno, count,"attend");
+        List unAttendDetail = attendService.selectAttendByCnoCount(cno, count,"notAttend");
+
+        
+    	uiModel.addAttribute("cno", cno);
+    	uiModel.addAttribute("CourseName", CourseName);
+        uiModel.addAttribute("AttendDetail", AttendDetail);
+        uiModel.addAttribute("unAttendDetail", unAttendDetail);
+
+        
+		return "attend/attendDetail2_teacher";
 	}
 	
 	@RequestMapping(value = "/view/isNotAttend/{changeInfo}")
@@ -163,7 +180,22 @@ public class AttendController {
         boolean changeResult = attendService.IsNotAttend(userID, attendenceId);
       
         
-		return "attend/attendIndex_teacher";
+        int cno = attendService.getCno(attendenceId);
+        int count = attendService.getCount(attendenceId);
+        
+        String CourseName = courseService.selectCourseNameById(cno); 
+        
+        List AttendDetail = attendService.selectAttendByCnoCount(cno, count,"attend");
+        List unAttendDetail = attendService.selectAttendByCnoCount(cno, count,"notAttend");
+
+        
+    	uiModel.addAttribute("cno", cno);
+    	uiModel.addAttribute("CourseName", CourseName);
+        uiModel.addAttribute("AttendDetail", AttendDetail);
+        uiModel.addAttribute("unAttendDetail", unAttendDetail);
+
+        
+		return "attend/attendDetail2_teacher";
 	}
 	
 	

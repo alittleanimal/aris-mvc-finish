@@ -137,5 +137,19 @@ public class AttendServiceImpl implements AttendService {
 		int temp = attendRepository.MaxCount(cno);
 		return temp;
 	}
+	
+	@Override
+	public int getCno (String attendenceID){
+		int cno = attendRepository.getCno(attendenceID);
+		return cno;
+	}
+	
+	@Override
+	public int getCount (String attendenceID){
+		int count = attendRepository.getCount(attendenceID);
+		return count;
+	}
+	
+	
 
 }

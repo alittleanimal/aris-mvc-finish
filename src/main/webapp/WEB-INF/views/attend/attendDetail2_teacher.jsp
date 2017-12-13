@@ -145,13 +145,27 @@
 											</tr>
 										</thead>
 										<tbody>
+											<c:forEach var="unAttendDetail" items="${unAttendDetail}" >			
+											<tr>
+												<spring:url var="doUrl" value="/stock/view/isAttend/${unAttendDetail.attendenceId}${unAttendDetail.userId}"/>												
+												<spring:url var="undoUrl" value="/stock/view/isNotAttend/${unAttendDetail.attendenceId}${unAttendDetail.userId}" />
+												<td><c:out value="${unAttendDetail.count}"></c:out></td>
+												<td><c:out value="${unAttendDetail.userId}"></c:out></td>
+												<td style="color: red">未签到</td>
+
+												<td>
+													<a href="${doUrl}" class="btn"> <i class="fa fa-upload"></i></a>&nbsp;&nbsp;&nbsp;
+													<a href="${undoUrl}" class="btn"> <i class="fa fa-download"></i></a>&nbsp;&nbsp;&nbsp;
+												</td>
+											</tr>
+											</c:forEach>
 											<c:forEach var="AttendDetail" items="${AttendDetail}" >			
 											<tr>
 												<spring:url var="doUrl" value="/stock/view/isAttend/${AttendDetail.attendenceId}${AttendDetail.userId}"/>												
 												<spring:url var="undoUrl" value="/stock/view/isNotAttend/${AttendDetail.attendenceId}${AttendDetail.userId}" />
 												<td><c:out value="${AttendDetail.count}"></c:out></td>
 												<td><c:out value="${AttendDetail.userId}"></c:out></td>
-												<td style="color: green"><c:out value="${AttendDetail.state}"></c:out></td>
+												<td style="color: green">已签到</td>
 
 												<td>
 													<a href="${doUrl}" class="btn"> <i class="fa fa-upload"></i></a>&nbsp;&nbsp;&nbsp;
