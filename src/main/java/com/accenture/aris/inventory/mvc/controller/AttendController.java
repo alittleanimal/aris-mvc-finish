@@ -195,7 +195,7 @@ public class AttendController {
         uiModel.addAttribute("unAttendDetail", unAttendDetail);
 
         
-		return "attend/attendDetail2_teacher";
+		return "attend/attendDetail2_teacher"; 
 	}
 	
 	

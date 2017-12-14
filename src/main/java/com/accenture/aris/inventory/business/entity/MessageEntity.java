@@ -3,40 +3,60 @@ package com.accenture.aris.inventory.business.entity;
 import java.sql.Date;
 
 public class MessageEntity {
-	private int messageId;
+	private String messageid;
+	private int cno;
 	private String userid;
-	private Date datetime;
-	private String context;
-	private String title;
-	public int getMessageId() {
-		return messageId;
+	private String text;
+	private int reply;
+
+	public MessageEntity() {
 	}
-	public void setMessageId(int messageId) {
-		this.messageId = messageId;
+
+	public MessageEntity(String messageid, int cno, String userid, String text, int reply) {
+		this.messageid = messageid;
+		this.cno = cno;
+		this.userid = userid;
+		this.text = text;
+		this.reply = reply;
 	}
+
+	public String getMessageid() {
+		return messageid;
+	}
+
+	public void setMessageid(String messageid) {
+		this.messageid = messageid;
+	}
+
+	public int getCno() {
+		return cno;
+	}
+
+	public void setCno(int cno) {
+		this.cno = cno;
+	}
+
 	public String getUserid() {
 		return userid;
 	}
+
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-	public Date getDatetime() {
-		return datetime;
+
+	public String getText() {
+		return text;
 	}
-	public void setDatetime(Date datetime) {
-		this.datetime = datetime;
+
+	public void setText(String text) {
+		this.text = text;
 	}
-	public String getContext() {
-		return context;
+
+	public int getReply() {
+		return reply;
 	}
-	public void setContext(String context) {
-		this.context = context;
+
+	public void setReply(int reply) {
+		this.reply = reply;
 	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	
 }
