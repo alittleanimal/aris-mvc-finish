@@ -8,6 +8,7 @@ public class MessageEntity {
 	private String userid;
 	private String text;
 	private int reply;
+	private String name;
 
 	public MessageEntity() {
 	}
@@ -58,5 +59,13 @@ public class MessageEntity {
 
 	public void setReply(int reply) {
 		this.reply = reply;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

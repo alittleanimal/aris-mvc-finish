@@ -11,11 +11,12 @@
 		<result column="userid" property="userid" jdbcType="VARCHAR" />
 		<result column="text" property="text" jdbcType="VARCHAR" />
 		<result column="reply" property="reply" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<select id="selectByMessageId" resultMap="BaseResultMap">
 		select
-		messageid,cno,userid,text,reply
+		messageid,cno,userid,text,reply,name
 		from t_message
 		where messageid =
 		#{messageid}
@@ -28,7 +29,7 @@
 
 	<select id="messageDetail" resultMap="BaseResultMap">
 		select
-		messageid,cno,userid,text,reply
+		messageid,cno,userid,text,reply,name
 		from t_message
 		where cno = #{0}
 		and reply
@@ -37,7 +38,7 @@
 
 	<select id="messageReply" resultMap="BaseResultMap">
 		select
-		messageid,cno,userid,text,reply
+		messageid,cno,userid,text,reply,name
 		from t_message , t_message_reply 
 		where messageid = reply_messageid
 		and target_messageid = #{messageid}
@@ -45,11 +46,11 @@
 
 	<insert id="createMessage"
 		parameterType="com.accenture.aris.inventory.business.entity.MessageEntity">
-		insert into t_message (messageid,cno,userid,text,reply)
+		insert into t_message (messageid,cno,userid,text,reply,name)
 		values
 		(#{messageid}, #{cno},
 		#{userid},#{text},
-		#{reply})
+		#{reply},#{name})
 	</insert>
 
 	<insert id="createMessageReply">
@@ -58,4 +59,11 @@
 		values
 		(#{0}, #{1})
 	</insert>
+	
+	<update id="changeReply">
+		update t_message
+		set reply = #{1}
+		where
+		messageid = #{0} 
+	</update>
 </mapper>

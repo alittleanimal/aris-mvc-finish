@@ -13,4 +13,6 @@ public interface MessageService {
 
 	boolean replyMessage(MessageEntity messageEntity, String targetMessageID);
 	
+	boolean changeReply (String messageID , int Reply);
+	
 }

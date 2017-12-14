@@ -20,4 +20,6 @@ public interface MessageRepository {
 
 	int createMessageReply(String targetMessageid, String replyMessageid);
 	
+	int changeReply (String messageID , int Reply);
+	
 }

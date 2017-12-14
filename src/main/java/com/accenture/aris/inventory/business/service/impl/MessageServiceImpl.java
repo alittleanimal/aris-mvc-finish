@@ -50,4 +50,14 @@ public class MessageServiceImpl implements MessageService {
 			return true;
 		}
 	}
+
+	@Override
+	public boolean changeReply(String messageID, int Reply) {
+		int temp = messageRepository.changeReply(messageID, Reply);
+		if (temp == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }
