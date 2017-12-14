@@ -25,6 +25,8 @@ import com.accenture.aris.inventory.business.service.CourseService;
 import com.accenture.aris.inventory.business.service.MessageService;
 import com.accenture.aris.inventory.business.service.impl.CourseServiceImpl;
 import com.accenture.aris.inventory.mvc.form.MessageForm;
+import com.accenture.aris.sample.business.entity.UserEntity;
+import com.accenture.aris.sample.business.service.UserService;
 
 @Controller
 @RequestMapping(value = "/stock")
@@ -36,6 +38,8 @@ public class MessageController {
 	CourseService courseService;
 	@Autowired
 	MessageService messageService;
+	@Autowired
+	UserService userService;
 	
 	@RequestMapping(value = "/view/messageIndex")
 	public String messageIndexInit(@Valid Model uiModel, SessionStatus status,HttpServletRequest request){
@@ -72,7 +76,7 @@ public class MessageController {
 			
 			replyMessageUnits.add(replyedMessageUnit);
 		}
-		
+		uiModel.addAttribute("cno", cno);
 		uiModel.addAttribute("noReplyMessage", noReplyMessage);
 		uiModel.addAttribute("replyMessageUnits", replyMessageUnits);
 
@@ -100,19 +104,43 @@ public class MessageController {
 		int cno = Integer.parseInt(responseinfo.substring(0, 4));		
 		String messageid = responseinfo.substring(4);
 		String userID= new ServletAuthenticatedLocator(request).getAuthenicatedUser();
-
+		ServiceResult<UserEntity> result = userService.searchUserService(userID);
+		String name = result.getResult().getName();
 		
 		MessageEntity messageEntity = new MessageEntity();
 		messageEntity.setUserid(userID);
 		messageEntity.setCno(cno);
 		messageEntity.setReply(3);
+		messageEntity.setName(name);
 		messageEntity.setMessageid(getRandomCharAndNumr(6));
 		messageEntity.setText(messageForm.gettext());
 		boolean responseResult = messageService.replyMessage(messageEntity, messageid);
+		boolean	replyResult = messageService.changeReply(messageid, 2);
 
 
-		return "message/messageIndex";
+		return "redirect:/stock/view/messageDetail/" +cno;
 	}
+	
+
+	@RequestMapping(value = "/view/messageCreate/{cno1}")
+	public String messageCreate(@Valid MessageForm messageForm ,@PathVariable("cno1") int cno1, Model uiModel, 
+			 SessionStatus status,HttpServletRequest request){
+
+		String userID= new ServletAuthenticatedLocator(request).getAuthenicatedUser();
+
+		
+		MessageEntity messageEntity = new MessageEntity();
+		messageEntity.setUserid(userID);
+		messageEntity.setCno(cno1);
+		messageEntity.setReply(1);
+		messageEntity.setMessageid(getRandomCharAndNumr(6));
+		messageEntity.setText(messageForm.gettext());
+		boolean responseResult = messageService.createMessage(messageEntity);
+
+
+		return "redirect:/stock/view/messageDetail/" +cno1;
+	}
+	
 	
 	public static String getRandomCharAndNumr(Integer length) {  
 	    String str = "";  

@@ -163,7 +163,7 @@
 					<div class="row">
 						<!-- CLASS2 -->
 						<div class="container-fluid">
-
+							<c:set var = "cno1" value = "${cno}"/> 
 							<div class="panel panel-headline demo-icons">
 								<div class="panel-heading">
 									<h3 class="panel-title">我要留言</h3>
@@ -172,17 +172,16 @@
 								<div class="panel-body">
 									<ul>
 										<li class="col-md-2 col-sm-4 col-xs-6"><span
-											class="lnr lnr-user"></span> <span class="cssclass">lnr
-												lnr-user</span></li>
-										<spring:url var="messageUpdate"
-											value="/stock/view/messageUpdate" />
-										<form:form id="courseInfoForm" class="form-horizontal"
-											action="${getInviteCode}" method="post"
-											modelAttribute="courseInfoForm">
-											<li style="list-style-type:none"><input id="semester"
-												name="semester" placeholder="快说些什么吧 =w=！" type="text" 
+											class="lnr lnr-user"></span> <span class="cssclass">我</span></li>
+										<spring:url var="messageCreate"
+											value="/stock/view/messageCreate/${cno1}" />
+										<form:form id="messageForm" class="form-horizontal"
+											action="${messageCreate}" method="post"
+											modelAttribute="messageForm">
+											<li style="list-style-type:none"><input id="text"
+												name="text" placeholder="快说些什么吧 =w=！" type="text" 
 												style="height:60px;width:500px;font-size:18px"></li>
-										</form:form>
+										
 									</ul>
 									<div class="control-group">
 										<div style="text-align:center">
@@ -192,7 +191,7 @@
 											<button type="submit" class="btn btn-info">留言</button>
 										</div>
 									</div>
-
+									</form:form>
 								</div>
 							</div>
 						</div>
@@ -207,8 +206,7 @@
 									<c:forEach var="replyMessage" items="${replyMessageUnit}" end="0">				
 									<ul>									
 										<li class="col-md-2 col-sm-4 col-xs-6"><span
-											class="lnr lnr-user"></span> <span class="cssclass">lnr
-												lnr-user</span></li>
+											class="lnr lnr-user"></span> <span class="cssclass"><c:out value="${replyMessage.name}"></c:out></span></li>
 										<li style="list-style-type:none"><input id="semester"
 											name="semester" placeholder=${replyMessage.text} readonly="readonly" type="text"
 											style="height:60px;width:500px;font-size:18px">
@@ -222,8 +220,7 @@
 									<c:forEach var="replyMessage" items="${replyMessageUnit}" begin="1">				
 									<ul>									
 										<li class="col-md-2 col-sm-4 col-xs-6"><span
-											class="lnr lnr-user"></span> <span class="cssclass">lnr
-												lnr-user</span></li>
+											class="lnr lnr-user"></span> <span class="cssclass"><c:out value="${replyMessage.name}"></c:out></span></li>
 										<li style="list-style-type:none">Re：<input id="semester"
 											name="semester" placeholder=${replyMessage.text} readonly="readonly" type="text"
 											style="height:60px;width:500px;font-size:18px">
@@ -252,8 +249,7 @@
 								<div class="panel-body">									
 									<ul>									
 										<li class="col-md-2 col-sm-4 col-xs-6"><span
-											class="lnr lnr-user"></span> <span class="cssclass">lnr
-												lnr-user</span></li>
+											class="lnr lnr-user"></span> <span class="cssclass"><c:out value="${noReplyMessage.name}"></c:out></span></li>
 										<li style="list-style-type:none"><input id="semester"
 											name="semester" placeholder=${noReplyMessage.text} readonly="readonly" type="text"
 											style="height:60px;width:500px;font-size:18px">
