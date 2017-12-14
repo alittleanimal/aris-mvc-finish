@@ -166,109 +166,41 @@
 
 							<div class="panel panel-headline demo-icons">
 								<div class="panel-heading">
-									<h3 class="panel-title">我要留言</h3>
-									<p class="subtitle">快留下自己想说的话，和课堂中的学生和老师们互动</p>
+									<h3 class="panel-title">回复</h3>
+									<p class="subtitle">加入大家的留言讨论</p>
 								</div>
 								<div class="panel-body">
 									<ul>
 										<li class="col-md-2 col-sm-4 col-xs-6"><span
 											class="lnr lnr-user"></span> <span class="cssclass">lnr
 												lnr-user</span></li>
+										<c:set var = "responseinfo" value = "${responseinfo}"/> 														
 										<spring:url var="messageUpdate"
-											value="/stock/view/messageUpdate" />
-										<form:form id="courseInfoForm" class="form-horizontal"
-											action="${getInviteCode}" method="post"
-											modelAttribute="courseInfoForm">
-											<li style="list-style-type:none"><input id="semester"
-												name="semester" placeholder="快说些什么吧 =w=！" type="text" 
+											value="/stock/view/messageResponseUpdate/${responseinfo}" />
+										<form:form id="messageForm" class="form-horizontal"
+											action="${messageUpdate}" method="post"
+											modelAttribute="messageForm">
+											<li style="list-style-type:none"><input id="text"
+												name="text" placeholder="想回复什么呢！" type="text" 
 												style="height:60px;width:500px;font-size:18px"></li>
-										</form:form>
+										
 									</ul>
 									<div class="control-group">
+										<c:set var = "cno" value = "${cno}"/> 									
 										<div style="text-align:center">
-											<spring:url var="cancelUrl" value="/stock/view/messageIndex" />
+											<spring:url var="cancelUrl" value="/stock/view/messageDetail/${cno}" />
 											<a href="${cancelUrl}" class="btn btn"> 返回</a>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											<button type="submit" class="btn btn-info">留言</button>
+											<button type="submit" class="btn btn-info">回复</button>
 										</div>
+										
 									</div>
+									</form:form>
 
 								</div>
 							</div>
 						</div>
-						<c:forEach var="replyMessageUnit" items="${replyMessageUnits}">
-						<div class="container-fluid">
-							<div class="panel panel-headline demo-icons ">
-								<div class="panel-heading">
-									<h3 class="panel-title">留言信息</h3>
-									<p class="subtitle">看看课堂里的老师和小伙伴们在说些什么</p>
-								</div>
-								<div class="panel-body">
-									<c:forEach var="replyMessage" items="${replyMessageUnit}" end="0">				
-									<ul>									
-										<li class="col-md-2 col-sm-4 col-xs-6"><span
-											class="lnr lnr-user"></span> <span class="cssclass">lnr
-												lnr-user</span></li>
-										<li style="list-style-type:none"><input id="semester"
-											name="semester" placeholder=${replyMessage.text} readonly="readonly" type="text"
-											style="height:60px;width:500px;font-size:18px">
-										</li>																	
-									</ul>
-									<c:set var = "messageID" value = "${replyMessage.messageid}"/> 
-									<c:set var = "cno" value = "${replyMessage.cno}"/> 
-									
-									</c:forEach>
-									
-									<c:forEach var="replyMessage" items="${replyMessageUnit}" begin="1">				
-									<ul>									
-										<li class="col-md-2 col-sm-4 col-xs-6"><span
-											class="lnr lnr-user"></span> <span class="cssclass">lnr
-												lnr-user</span></li>
-										<li style="list-style-type:none">Re：<input id="semester"
-											name="semester" placeholder=${replyMessage.text} readonly="readonly" type="text"
-											style="height:60px;width:500px;font-size:18px">
-										</li>										
-									</ul>
-									</c:forEach>
-									<div class="control-group">
-										<div style="text-align:right">
-											<spring:url var="responseUrl" value="/stock/view/messageResponse/${cno}${messageID}" />
-											<a href="${responseUrl}" class="btn btn-info"> 回复</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										</div>
-									</div>						
-								</div>
-								
-							</div>
-						</div>
-						</c:forEach>
 						
-						<c:forEach var="noReplyMessage" items="${noReplyMessage}">
-						<div class="container-fluid">
-							<div class="panel panel-headline demo-icons ">
-								<div class="panel-heading">
-									<h3 class="panel-title">留言信息</h3>
-									<p class="subtitle">看看课堂里的老师和小伙伴们在说些什么</p>
-								</div>
-								<div class="panel-body">									
-									<ul>									
-										<li class="col-md-2 col-sm-4 col-xs-6"><span
-											class="lnr lnr-user"></span> <span class="cssclass">lnr
-												lnr-user</span></li>
-										<li style="list-style-type:none"><input id="semester"
-											name="semester" placeholder=${noReplyMessage.text} readonly="readonly" type="text"
-											style="height:60px;width:500px;font-size:18px">
-										</li>																	
-									</ul>
-									<div class="control-group">
-										<div style="text-align:right">
-											<spring:url var="responseUrl" value="/stock/view/messageResponse/${noReplyMessage.cno }${noReplyMessage.messageid }" />
-											<a href="${responseUrl}" class="btn btn-info"> 回复</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										</div>
-									</div>		
-								</div>
-							</div>
-						</div>
-						</c:forEach>
 						<!-- PANEL NO PADDING -->
 						<div class="panel">
 							<div class="panel-heading">
@@ -285,7 +217,7 @@
 							<div class="panel-body no-padding bg-primary text-center">
 								<div class="padding-top-30 padding-bottom-30">
 									<i class="fa fa-thumbs-o-up fa-5x"></i>
-									<h3>所有课程均可留言</h3>
+									<h3>正在回复留言</h3>
 								</div>
 							</div>
 						</div>

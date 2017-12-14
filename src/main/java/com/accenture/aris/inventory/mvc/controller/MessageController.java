@@ -3,6 +3,7 @@ package com.accenture.aris.inventory.mvc.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -23,6 +24,7 @@ import com.accenture.aris.inventory.business.entity.MessageEntity;
 import com.accenture.aris.inventory.business.service.CourseService;
 import com.accenture.aris.inventory.business.service.MessageService;
 import com.accenture.aris.inventory.business.service.impl.CourseServiceImpl;
+import com.accenture.aris.inventory.mvc.form.MessageForm;
 
 @Controller
 @RequestMapping(value = "/stock")
@@ -77,5 +79,54 @@ public class MessageController {
 		return "message/messageDetail";
 
 	}
+	
+	@RequestMapping(value = "/view/messageResponse/{responseinfo}")
+	public String messageResponse(@Valid @PathVariable("responseinfo") String responseinfo, Model uiModel, SessionStatus status,HttpServletRequest request){
+		int cno = Integer.parseInt(responseinfo.substring(0, 4));
+		
+		String messageid = responseinfo.substring(4);		
+		
+		uiModel.addAttribute("responseinfo", responseinfo);
+		uiModel.addAttribute("cno", cno);
+		uiModel.addAttribute("messageid", messageid);
+		
+		return "message/messageResponse";
+
+	}
+	
+	@RequestMapping(value = "/view/messageResponseUpdate/{responseinfo}")
+	public String messageResponseUpdate(@Valid MessageForm messageForm ,@PathVariable("responseinfo") String responseinfo, Model uiModel, 
+			 SessionStatus status,HttpServletRequest request){
+		int cno = Integer.parseInt(responseinfo.substring(0, 4));		
+		String messageid = responseinfo.substring(4);
+		String userID= new ServletAuthenticatedLocator(request).getAuthenicatedUser();
+
+		
+		MessageEntity messageEntity = new MessageEntity();
+		messageEntity.setUserid(userID);
+		messageEntity.setCno(cno);
+		messageEntity.setReply(3);
+		messageEntity.setMessageid(getRandomCharAndNumr(6));
+		messageEntity.setText(messageForm.gettext());
+		boolean responseResult = messageService.replyMessage(messageEntity, messageid);
+
+
+		return "message/messageIndex";
+	}
+	
+	public static String getRandomCharAndNumr(Integer length) {  
+	    String str = "";  
+	    Random random = new Random();  
+	    for (int i = 0; i < length; i++) {  
+	        boolean b = random.nextBoolean();  
+	        if (b) { // 字符串  
+	            // int choice = random.nextBoolean() ? 65 : 97; 取得65大写字母还是97小写字母  
+	            str += (char) (65 + random.nextInt(26));// 取得大写字母  
+	        } else { // 数字  
+	            str += String.valueOf(random.nextInt(10));  
+	        }  
+	    }  
+	    return str;  
+	}  
 	
 }
