@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.accenture.aris.core.authorization.ServletAuthorisedLocator;
 import com.accenture.aris.inventory.business.service.CourseService;
 import com.accenture.aris.inventory.business.service.impl.CourseServiceImpl;
 
@@ -36,15 +37,28 @@ import com.accenture.aris.inventory.business.service.impl.CourseServiceImpl;
 public class UpDownloadController {
 	
 	 @RequestMapping("/UploadFiles")  
-	    public String toFileUpload2() {  
-	        return "ktp/uploadFiles";  
+	    public String toFileUpload2(HttpServletRequest request, ModelMap model) {  
+		 	String roleID= new ServletAuthorisedLocator(request).getAuthorisedRole();
+		 	String path = "d:/Temp/file/";
+		    Map<String, String> fileNameMap = new HashMap<String, String>();  
+		    // 递归遍历filepath目录下的所有文件和目录，将文件的文件名存储到map集合中  
+		    listfile(new File(path), fileNameMap);// File既可以代表一个文件也可以代表一个目录  
+		    // 将Map集合发送到listfile.jsp页面进行显示  
+		    request.setAttribute("fileNameMap", fileNameMap);  
+		    if (roleID.equals("S0001")){
+				return "file/fileIndex_student";
+			}
+			else if (roleID.equals("T0001")){
+				return "file/fileIndex_teacher";
+			}
+	        return "file/fileIndex_teacher";  
 	    }  
 	 
 	@RequestMapping("/upload")  
 	public String threeFileUpload(  
 	        @RequestParam("file") CommonsMultipartFile files[],  
 	        HttpServletRequest request, ModelMap model) {  
-	  
+		String roleID= new ServletAuthorisedLocator(request).getAuthorisedRole();
 	    List<String> list = new ArrayList<String>();  
 	    // 获得项目的路径  
 	    ServletContext sc = request.getSession().getServletContext();  
@@ -89,7 +103,13 @@ public class UpDownloadController {
 	    // 将Map集合发送到listfile.jsp页面进行显示  
 	    request.setAttribute("fileNameMap", fileNameMap);  
 	    
-	    return "ktp/uploadFiles";  
+	    if (roleID.equals("S0001")){
+			return "file/fileIndex_student";
+		}
+		else if (roleID.equals("T0001")){
+			return "file/fileIndex_teacher";
+		}
+        return "file/fileIndex_teacher";  
 	  
 	}  
 	
@@ -100,8 +120,7 @@ public class UpDownloadController {
 				listfile(f, map);
 			}
 		} else {
-			String realName = file.getName().substring(
-					file.getName().indexOf("_") + 1);
+			String realName = file.getName().substring(36);
 			map.put(file.getName(), realName);
 		}
 	}
@@ -133,7 +152,7 @@ public class UpDownloadController {
                 return;  
             }  
             // 处理文件名  
-            String realname = fileName.substring(fileName.indexOf("_") + 1);  
+            String realname = fileName.substring(36);  
             // 设置响应头，控制浏览器下载该文件  
             response.setHeader("content-disposition", "attachment;filename="  
                     + URLEncoder.encode(realname, "UTF-8"));  

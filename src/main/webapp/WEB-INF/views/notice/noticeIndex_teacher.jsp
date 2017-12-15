@@ -97,63 +97,90 @@
 				<nav>
 					<ul class="nav">
 						<spring:url var="subjectUrl" value="/stock/view/subjectIndex"/>
+						<spring:url var="attendUrl" value="/stock/view/attendIndex"/>
+						<spring:url var="userUrl" value="/user/updateInput"/>
+						<spring:url var="messageUrl" value="/stock/view/messageIndex"/>
+						<spring:url var="loginUrl" value="/"/>
 						<li><a href="index.jsp" class=""><i class="lnr lnr-home"></i> <span>主页</span></a></li>
-						<li><a href="${subjectUrl}"class="active"><i class="lnr lnr-code"></i> <span>课程</span></a></li>
-						<li><a href="charts.jsp" class=""><i class="lnr lnr-chart-bars"></i> <span>考勤</span></a></li>
-						<li><a href="panels.jsp" class=""><i class="lnr lnr-cog"></i> <span>公告</span></a></li>
+						<li><a href="${subjectUrl}"class=""><i class="lnr lnr-code"></i> <span>课程</span></a></li>
+						<li><a href="${attendUrl}" class=""><i class="lnr lnr-chart-bars"></i> <span>考勤</span></a></li>
+						<li><a href="panels.jsp" class="active"><i class="lnr lnr-cog"></i> <span>公告</span></a></li>
 						<li><a href="notifications.jsp" class=""><i class="lnr lnr-alarm"></i> <span>成绩</span></a></li>
 						<li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>个人信息</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
-									<li><a href="page-profile.jsp" class="">个人信息</a></li>
-									<li><a href="page-login.jsp" class="">登录</a></li>
+									<li><a href="${userUrl}" class="">个人信息</a></li>
+									<li><a href="${loginUrl}" class="">登出</a></li>
 									<li><a href="page-lockscreen.jsp  " class="">锁屏</a></li>
 								</ul>
 							</div>
 						</li>
 						<li><a href="tables.jsp" class=""><i class="lnr lnr-dice"></i> <span>资料</span></a></li>
 						<li><a href="typography.jsp" class=""><i class="lnr lnr-text-format"></i> <span>作业</span></a></li>
-						<li><a href="icons.jsp" class=""><i class="lnr lnr-linearicons"></i> <span>留言板</span></a></li>
+						<li><a href="${messageUrl}" class=""><i class="lnr lnr-linearicons"></i> <span>留言板</span></a></li>
 					</ul>
 				</nav>
 			</div>
 		</div>
 		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
-		<div class="main" align="left">
+		<div class="main" align="left">	
 			<!-- MAIN CONTENT -->
 			<div class="main-content" align="left">
 				<div class="container-fluid" align="left">
-					<h3 class="page-title">加入课堂</h3>
+					<h3 class="page-title">公告</h3>
 					<div class="row">
-						<div class="col-md-6">
-							
-							<!-- CLASS1 -->
-							<div class="panel">
+						<div class="col-md-6">										
+							<!-- CLASS2 -->
+ 												
+ 								<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">邀请码</h3>
+									<h3 class="panel-title">Panel Default</h3>
+								  							
+									<spring:url var="messageDetailUrl" value="/stock/view/messageDetail/"/>									
+			
+								    <div class="right">
+										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+									</div>
 								</div>
+								<br>
 								<div class="panel-body">
-								    <spring:url var="getInviteCode" value="/stock/view/inviteCodeupdate" />
-									<form:form id="InviteCodeForm" class="form-horizontal" action="${getInviteCode}" method="post" modelAttribute ="InviteCodeForm">
-          								<div class="control-group">
-             								 <input id="invitation" name="invitation" class="form-control input-lg" placeholder="请输入课程邀请码" type="text" 
-             								 	style="height:40px">
-          								</div>
-          							<!-- submit or return button -->
-          							<div class="control-group">
-            							<div class="controls">
-              							<spring:url var="cancelUrl" value="/stock/view/subjectIndex"/>
-              							<a href="${cancelUrl}" class="btn btn-info"> 返回</a>   
-              							<input type="submit" value="上 传" />     							
-           							    </div>
-           							</div>
-          							</form:form>
+									<p>Objectively network visionary methodologies via best-of-breed users. Phosfluorescently initiate go forward leadership skills before an expanded array of infomediaries. Monotonectally incubate web-enabled communities rather than process-centric.</p>
 								</div>
 							</div>
-							<!-- END CLASS1 -->
 							
+							<!-- END CLASS2 -->
+						</div>	
+						<div class="col-md-6">
+								   
+							<div class="panel" align="left">
+								<div class="panel-body">
+									 <div style="font-size:20px ;float:left">教师公告</div>									
+									<spring:url var="messageDetailUrl" value="/stock/view/messageDetail/}"/>									
+									<div style="float: right">
+								    <a href="${messageDetailUrl}" class="btn btn-primary">发布公告</a></div>
+								</div>	
+								
+							</div>
+							<!-- PANEL NO PADDING -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">公告状态</h3>
+									<div class="right">
+										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+									</div>
+								</div>
+								<div class="panel-body no-padding bg-primary text-center">
+									<div class="padding-top-30 padding-bottom-30">
+										<i class="fa fa-thumbs-o-up fa-5x"></i>
+										<h3>请查看教师公告</h3>
+									</div>
+								</div>
+							</div>
+							<!-- END PANEL NO PADDING -->
 							
 						</div>				
 					</div>
