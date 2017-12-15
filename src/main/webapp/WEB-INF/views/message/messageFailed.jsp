@@ -171,17 +171,12 @@
 								</div>
 								<div class="panel-body">
 									<ul>
-										<li class="col-md-2 col-sm-4 col-xs-6"><span
-											class="lnr lnr-user"></span> <span class="cssclass">我&nbsp;</span></li>
-										<c:set var = "responseinfo" value = "${responseinfo}"/> 														
-										<spring:url var="messageUpdate"
-											value="/stock/view/messageResponseUpdate/${responseinfo}" />
-										<form:form id="messageForm" class="form-horizontal"
-											action="${messageUpdate}" method="post"
-											modelAttribute="messageForm">
-											<li style="list-style-type:none"><input id="text"
-												name="text" placeholder="想回复什么呢！" type="text" 
-												style="height:60px;width:500px;font-size:18px"></li>
+											<li style="list-style-type:none">
+												<div class="alert alert-danger alert-dismissible" role="alert">
+													<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													<i class="fa fa-check-circle"></i> 留言失败，留言信息不能为空
+												</div>
+											</li>
 										
 									</ul>
 									<div class="control-group">
@@ -189,13 +184,10 @@
 										<div style="text-align:center">
 											<spring:url var="cancelUrl" value="/stock/view/messageDetail/${cno}" />
 											<a href="${cancelUrl}" class="btn btn"> 返回</a>
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											<button type="submit" class="btn btn-info">回复</button>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;											
 										</div>
 										
 									</div>
-									</form:form>
-
 								</div>
 							</div>
 						</div>

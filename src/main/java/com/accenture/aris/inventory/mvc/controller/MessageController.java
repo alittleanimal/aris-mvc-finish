@@ -107,6 +107,13 @@ public class MessageController {
 		ServiceResult<UserEntity> result = userService.searchUserService(userID);
 		String name = result.getResult().getName();
 		
+		uiModel.addAttribute("cno", cno);
+		if (messageForm.gettext()=="" || messageForm.gettext()==null)
+		{
+			return "message/messageFailed";
+		}
+		
+		
 		MessageEntity messageEntity = new MessageEntity();
 		messageEntity.setUserid(userID);
 		messageEntity.setCno(cno);
@@ -127,11 +134,18 @@ public class MessageController {
 			 SessionStatus status,HttpServletRequest request){
 
 		String userID= new ServletAuthenticatedLocator(request).getAuthenicatedUser();
-
+		ServiceResult<UserEntity> result = userService.searchUserService(userID);
+		String name = result.getResult().getName();
+		uiModel.addAttribute("cno", cno1);
+		if (messageForm.gettext()=="" || messageForm.gettext()==null)
+		{
+			return "message/messageFailed";
+		}
 		
 		MessageEntity messageEntity = new MessageEntity();
 		messageEntity.setUserid(userID);
 		messageEntity.setCno(cno1);
+		messageEntity.setName(name);
 		messageEntity.setReply(1);
 		messageEntity.setMessageid(getRandomCharAndNumr(6));
 		messageEntity.setText(messageForm.gettext());
