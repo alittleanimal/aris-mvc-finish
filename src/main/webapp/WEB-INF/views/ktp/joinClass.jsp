@@ -146,7 +146,7 @@
             							<div class="controls">
               							<spring:url var="cancelUrl" value="/stock/view/subjectIndex"/>
               							<a href="${cancelUrl}" class="btn btn-info"> 返回</a>   
-              							<input type="submit" value="上 传" />     							
+              							<button type="submit" class="btn btn-info"> 确认</button>           							
            							    </div>
            							</div>
           							</form:form>

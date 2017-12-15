@@ -21,10 +21,13 @@ import com.accenture.aris.core.support.ServiceResult;
 import com.accenture.aris.core.support.message.Messages;
 import com.accenture.aris.inventory.business.entity.CourseEntity;
 import com.accenture.aris.inventory.business.entity.MessageEntity;
+import com.accenture.aris.inventory.business.entity.NoticeEntity;
 import com.accenture.aris.inventory.business.service.CourseService;
 import com.accenture.aris.inventory.business.service.MessageService;
+import com.accenture.aris.inventory.business.service.NoticeService;
 import com.accenture.aris.inventory.business.service.impl.CourseServiceImpl;
 import com.accenture.aris.inventory.mvc.form.MessageForm;
+import com.accenture.aris.inventory.mvc.form.NoticeForm;
 import com.accenture.aris.sample.business.entity.UserEntity;
 import com.accenture.aris.sample.business.service.UserService;
 
@@ -40,14 +43,58 @@ public class NoticeController {
 	MessageService messageService;
 	@Autowired
 	UserService userService;
+	@Autowired
+	NoticeService noticeService;
 	
 	@RequestMapping(value = "/view/noticeIndex")
 	public String noticeIndexInit(@Valid Model uiModel, SessionStatus status,HttpServletRequest request){
-
+		
+        String roleID= new ServletAuthorisedLocator(request).getAuthorisedRole();
+		List<NoticeEntity> noticeList = noticeService.noticeDetail();		
+		uiModel.addAttribute("noticeList", noticeList);
+		
+		if (roleID.equals("S0001")){
+			return "notice/noticeIndex_student";
+		}
+		else if (roleID.equals("T0001")){
+			return "notice/noticeIndex_teacher";
+		}
 		return "notice/noticeIndex_teacher";
 
 	}
 	
+	@RequestMapping(value = "/view/createNotice")
+	public String createNotice(@Valid Model uiModel, SessionStatus status,HttpServletRequest request){
+		
+		List<NoticeEntity> noticeList = noticeService.noticeDetail();
+		
+		uiModel.addAttribute("noticeList", noticeList);
+		return "notice/createNotice";
+
+	}
+	@RequestMapping(value = "/view/noticeCreateUpdate")
+	public String noticeCreateUpdate(@Valid NoticeForm noticeForm, Model uiModel, SessionStatus status,HttpServletRequest request){
+		
+		if (noticeForm.getContext()=="" || noticeForm.getTitle()==null || noticeForm.getTitle()=="" || noticeForm.getContext()==null)
+		{
+			return "message/messageFailed";
+		}
+		
+		String userID= new ServletAuthenticatedLocator(request).getAuthenicatedUser();
+		ServiceResult<UserEntity> result = userService.searchUserService(userID);
+		String name = result.getResult().getName();
+		NoticeEntity noticeEntity = new NoticeEntity();
+		noticeEntity.setContext(noticeForm.getContext());
+		noticeEntity.setTitle(noticeForm.getTitle());
+		noticeEntity.setUserid(userID);
+		noticeEntity.setTeachername(name);
+		
+		boolean noticeResult = noticeService.createNotice(noticeEntity);
+
+		return "redirect:/stock/view/noticeIndex";
+
+
+	}
 	
 	
 	

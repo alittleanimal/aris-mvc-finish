@@ -9,7 +9,7 @@
 		<result column="notice_id" property="notice_id" jdbcType="INTEGER" />
 		<result column="userid" property="userid" jdbcType="VARCHAR" />
 		<result column="context" property="context" jdbcType="VARCHAR" />
-		<result column="title" property="teactitleher" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
 		<result column="teachername" property="teachername" jdbcType="INTEGER" />
 	</resultMap>
 
@@ -23,7 +23,7 @@
 
 	<insert id="createNotice"
 		parameterType="com.accenture.aris.inventory.business.entity.NoticeEntity">
-		insert into t_course
+		insert into t_notice
 		(notice_id,userid,context,title,teachername)
 		values
 		(#{notice_id,jdbcType=INTEGER}, #{userid,jdbcType=VARCHAR},

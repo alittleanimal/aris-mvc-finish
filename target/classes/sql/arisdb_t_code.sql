@@ -36,7 +36,7 @@ CREATE TABLE `t_code` (
 
 LOCK TABLES `t_code` WRITE;
 /*!40000 ALTER TABLE `t_code` DISABLE KEYS */;
-INSERT INTO `t_code` VALUES ('h1','habit','drinking'),('h1,h2','dummy','drinling,smorking'),('h2','habit','smorking'),('n1','nationality','Japan'),('n2','nationality','USA'),('n3','nationality','Others'),('null','dummy',''),('s1','sex','male'),('s2','sex','famale');
+INSERT INTO `t_code` VALUES ('h1','habit','drinking'),('h1,h2','dummy','drinling,smorking'),('h2','habit','smorking'),('n1','nationality','Japan'),('n2','nationality','USA'),('n3','nationality','Others'),('null','dummy',''),('s1','sex','Male'),('s2','sex','Female');
 /*!40000 ALTER TABLE `t_code` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

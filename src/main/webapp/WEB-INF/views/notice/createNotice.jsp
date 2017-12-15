@@ -173,31 +173,30 @@
 										<li class="col-md-2 col-sm-4 col-xs-6"><span
 											class="lnr lnr-bookmark"></span> <span class="cssclass">标题</span></li>
 										<spring:url var="messageCreate"
-											value="/stock/view/messageCreate/" />
-										<form:form id="messageForm" class="form-horizontal"
+											value="/stock/view/noticeCreateUpdate" />
+										<form:form id="noticeForm" class="form-horizontal"
 											action="${messageCreate}" method="post"
-											modelAttribute="messageForm">
+											modelAttribute="noticeForm">
 											<li style="list-style-type:none"><input id="title"
-												name="title" placeholder="快说些什么吧 =w=！" type="text" 
+												name="title" placeholder="快说些什么吧 =w=！" type="text"
 												style="height:60px;width:550px;font-size:18px"></li>
-										<li class="col-md-2 col-sm-4 col-xs-6"><span
-											class="fa fa-envelope"></span> <span class="cssclass">内容</span></li>								
-											<li style="list-style-type:none"><textarea id="text" class="form-control"
-												name="text" placeholder="快说些什么吧 =w=！" 
-												style="height:150px;width:550px;font-size:18px"></textarea></li>
-										
+											<li class="col-md-2 col-sm-4 col-xs-6"><span
+												class="fa fa-envelope"></span> <span class="cssclass">内容</span></li>
+											<li style="list-style-type:none"><textarea id="context"
+													class="form-control" name="context" placeholder="快说些什么吧 =w=！"
+													style="height:150px;width:550px;font-size:18px"></textarea></li>
 									</ul>
 									<div class="control-group">
-										<div style="text-align:center">										
+										<div style="text-align:center">
 											<button type="submit" class="btn btn-info">发布</button>
 										</div>
 									</div>
 									</form:form>
 								</div>
 							</div>
-						</div>					
-						
-						
+						</div>
+
+
 						<!-- PANEL NO PADDING -->
 						<div class="panel">
 							<div class="panel-heading">

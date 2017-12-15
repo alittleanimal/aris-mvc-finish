@@ -26,19 +26,19 @@ public class NoticeEntity {
 		this.notice_id = notice_id;
 	}
 
-	public String getUseridString() {
+	public String getUserid() {
 		return userid;
 	}
 
-	public void setUseridString(String useridString) {
+	public void setUserid(String useridString) {
 		this.userid = useridString;
 	}
 
-	public String getContextString() {
+	public String getContext() {
 		return context;
 	}
 
-	public void setContextString(String contextString) {
+	public void setContext(String contextString) {
 		this.context = contextString;
 	}
 
