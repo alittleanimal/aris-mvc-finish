@@ -75,7 +75,7 @@ public class GradeServiceImpl implements GradeService {
 		}
 		
 		for (int courseid : course) {
-			List<GradeEntity> tempList = gradeRepository.getAllGradeByCno(courseid);
+			List<GradeEntity> tempList = gradeRepository.getAllGradeByCnoUserid(courseid,userid);
 			for (GradeEntity gradeEntity2 : tempList) {
 				gradeEntities.add(gradeEntity2);
 			}

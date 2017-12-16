@@ -100,6 +100,7 @@
 						<spring:url var="attendUrl" value="/stock/view/attendIndex"/>
 						<spring:url var="messageUrl" value="/stock/view/messageIndex"/>
 						<spring:url var="noticeUrl" value="/stock/view/noticeIndex"/>
+						<spring:url var="gradeUrl" value="/stock/view/gradeIndex"/>
 						<spring:url var="fileUrl" value="/stock/UploadFiles"/>
 						<spring:url var="userUrl" value="/user/updateInput"/>
 						<spring:url var="loginUrl" value="/"/>
@@ -107,7 +108,7 @@
 						<li><a href="${subjectUrl}"class="active"><i class="lnr lnr-code"></i> <span>课程</span></a></li>
 						<li><a href="${attendUrl}" class=""><i class="lnr lnr-chart-bars"></i> <span>考勤</span></a></li>
 						<li><a href="${noticeUrl}" class=""><i class="lnr lnr-cog"></i> <span>公告</span></a></li>
-						<li><a href="notifications.jsp" class=""><i class="lnr lnr-alarm"></i> <span>成绩</span></a></li>
+						<li><a href="${gradeUrl}" class=""><i class="lnr lnr-alarm"></i> <span>成绩</span></a></li>
 						<li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>个人信息</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">

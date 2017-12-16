@@ -101,14 +101,13 @@
 						<spring:url var="messageUrl" value="/stock/view/messageIndex"/>
 						<spring:url var="noticeUrl" value="/stock/view/noticeIndex"/>
 						<spring:url var="fileUrl" value="/stock/UploadFiles"/>
-						<spring:url var="gradeUrl" value="/stock/view/gradeIndex"/>						
 						<spring:url var="userUrl" value="/user/updateInput"/>
 						<spring:url var="loginUrl" value="/"/>
 						<li><a href="index.jsp" class=""><i class="lnr lnr-home"></i> <span>主页</span></a></li>
 						<li><a href="${subjectUrl}"class="active"><i class="lnr lnr-code"></i> <span>课程</span></a></li>
 						<li><a href="${attendUrl}" class=""><i class="lnr lnr-chart-bars"></i> <span>考勤</span></a></li>
 						<li><a href="${noticeUrl}" class=""><i class="lnr lnr-cog"></i> <span>公告</span></a></li>
-						<li><a href="${gradeUrl}" class=""><i class="lnr lnr-alarm"></i> <span>成绩</span></a></li>
+						<li><a href="notifications.jsp" class=""><i class="lnr lnr-alarm"></i> <span>成绩</span></a></li>
 						<li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>个人信息</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
@@ -132,7 +131,7 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content" align="left">
 				<div class="container-fluid" align="left">
-					<h3 class="page-title">课程</h3>
+					<h3 class="page-title">成绩</h3>
 					<div class="row">
 						<div class="col-md-6">
 							
@@ -140,10 +139,14 @@
 							<!-- CLASS2 -->
  							<c:forEach var="course" items="${courses}">						
  								<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title"><c:out value="${course.cname}"></c:out></h3>
-								</div>
+								<div class="panel-heading">								
+										<div style="font-size:20px ;float:left"><c:out value="${course.cname}"></c:out></div>									
+									<spring:url var="gradeDetailUrl" value="/stock/view/gradeDetail/${course.cno}"/>
+									<div style="float: right">
+								    <a href="${gradeDetailUrl}" class="btn btn-info">查看成绩</a></div>
+									</div>
 								<div class="panel-body">
+								    <br>
 									<tr>
 										<td>学分  :  </td>
                  						<td><c:out value="${course.credit}"></c:out></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
@@ -174,10 +177,8 @@
 							<div class="panel" align="left">
 								<div class="panel-body">
 									<p class="demo-button">
-										<div style="font-size:20px ;float:left">我的课程</div>
-										<spring:url var="joinClassUrl" value="/stock/view/joinClass"/>
-										<div style="float: right"><a href="${joinClassUrl}" class="btn btn-primary">+ 加入课堂</a>
-									</div>
+										<div style="font-size:20px ;float:left">成绩管理</div>
+										
 																		
 									</p>
 								</div>
@@ -186,7 +187,7 @@
 							<!-- PANEL NO PADDING -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">选课状态</h3>
+									<h3 class="panel-title">成绩统计</h3>
 									<div class="right">
 										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
 										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
@@ -194,8 +195,8 @@
 								</div>
 								<div class="panel-body no-padding bg-primary text-center">
 									<div class="padding-top-30 padding-bottom-30">
-										<i class="fa fa-thumbs-o-up fa-5x"></i>
-										<h3>已完成所有选课</h3>
+										<i class="fa fa-calendar fa-5x"></i>
+										<h3>管理学生考试成绩</h3>
 									</div>
 								</div>
 							</div>

@@ -20,5 +20,5 @@ public interface GradeRepository {
 
 	int changeGrade (int gradeid,int grade); //根据gradeid更改学生的成绩信息 （grade_detail表）
 
-	List<GradeEntity> getAllGradeByCno(int cno);
+	List<GradeEntity> getAllGradeByCnoUserid(int cno ,String userid);
 }

@@ -28,33 +28,33 @@
 	<select id="getTestDetail" resultMap="BaseResultMap"
 	parameterType="java.lang.String">
 		select
-		gradeid,testid,username,grade
-		from t_grade_detail
-		where testid = #{testid}
+		d.testid,t.cno,t.cname,t.testname,d.gradeid,d.username,d.grade
+		from t_grade_detail d , t_grade t
+		where t.testid=d.testid and t.testid=#{testid}
 	</select>
 	
 	<select id="getOneDetail" resultMap="BaseResultMap"
 	parameterType="java.lang.Integer">
 		select
-		gradeid,testid,username,grade
-		from t_grade_detail
-		where gradeid = #{gradeid}
+		d.testid,t.cno,t.cname,t.testname,d.gradeid,d.username,d.grade
+		from t_grade_detail d , t_grade t
+		where gradeid = #{gradeid} and t.testid=d.testid
 	</select>
 	
-	<select id="getAllGradeByCno" resultMap="BaseResultMap"
+	<select id="getAllGradeByCnoUserid" resultMap="BaseResultMap"
 	parameterType="java.lang.Integer">
 		select
 		t.testid as testid,cno,cname,testname,time,gradeid,username,grade
 		from t_grade_detail t, t_grade g
 		where t.testid = g.testid
-		and cno = #{cno}
+		and cno = #{0} and t.username=(select name from t_user where id=#{1})
 	</select>
 
 	<update id="changeGrade"
 		parameterType="com.accenture.aris.inventory.business.entity.GradeEntity">
 		update t_grade_detail
-		set grade = #{grade},
-		where gradeid = #{gradeid}
+		set grade = #{1}
+		where gradeid = #{0}
 	</update>
 
 	<insert id="insertIntoGrade"

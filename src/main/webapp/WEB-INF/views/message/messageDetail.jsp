@@ -180,7 +180,7 @@
 											modelAttribute="messageForm">
 											<li style="list-style-type:none"><input id="text"
 												name="text" placeholder="快说些什么吧 =w=！" type="text" 
-												style="height:60px;width:500px;font-size:18px"></li>
+												style="height:60px;width:80px;font-size:18px"></li>
 										
 									</ul>
 									<div class="control-group">
