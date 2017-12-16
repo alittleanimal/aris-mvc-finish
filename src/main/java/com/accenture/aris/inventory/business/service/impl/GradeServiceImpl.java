@@ -68,7 +68,6 @@ public class GradeServiceImpl implements GradeService {
 	@Override
 	public List<GradeEntity> getStudentTestList(String userid) {
 		List<Integer> course = courseRepository.selectByUserid(userid);
-		GradeEntity gradeEntity = new GradeEntity();
 		List<GradeEntity> gradeEntities = new ArrayList<GradeEntity>();
 		
 		if (course.isEmpty()) {
@@ -76,8 +75,10 @@ public class GradeServiceImpl implements GradeService {
 		}
 		
 		for (int courseid : course) {
-			gradeEntity = gradeRepository.getAllGradeByCno(courseid);
-			gradeEntities.add(gradeEntity);
+			List<GradeEntity> tempList = gradeRepository.getAllGradeByCno(courseid);
+			for (GradeEntity gradeEntity2 : tempList) {
+				gradeEntities.add(gradeEntity2);
+			}
 		}
 		return gradeEntities;
 	}
