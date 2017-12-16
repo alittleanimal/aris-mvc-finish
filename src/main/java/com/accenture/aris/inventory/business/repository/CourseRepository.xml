@@ -81,6 +81,15 @@
 		#{userid}
 
 	</select>
+	
+	<select id="selectUserNameByCno" resultType="java.lang.String"
+		parameterType="java.lang.Integer">
+		select
+		name
+		from t_user_course t, t_user d
+		where d.id = t.userid
+		and courseid = #{cno}
+	</select>
 
 	<select id="selectAttendByCno"
 		resultType="com.accenture.aris.inventory.business.entity.AttendEntity"

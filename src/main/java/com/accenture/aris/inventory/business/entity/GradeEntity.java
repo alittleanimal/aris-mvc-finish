@@ -1,41 +1,97 @@
 package com.accenture.aris.inventory.business.entity;
 
 public class GradeEntity {
-	private String userid;
+	private String testid;
 	private int cno;
-	private int pscj;
-	private int qmcj;
-	private int zpcj;
-	public String getUserid() {
-		return userid;
+	private String cname;
+	private String testname;
+	private String time;
+	private int gradeid;
+	private String username;
+	private int grade;
+	
+	public GradeEntity() {
+		// TODO Auto-generated constructor stub
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+
+	public GradeEntity(String testid, int cno, String cname, String testname, String time, int gradeid, String username,
+			int grade) {
+		this.testid = testid;
+		this.cno = cno;
+		this.cname = cname;
+		this.testname = testname;
+		this.time = time;
+		this.gradeid = gradeid;
+		this.username = username;
+		this.grade = grade;
 	}
+
+	public String getTestid() {
+		return testid;
+	}
+
+	public void setTestid(String testid) {
+		this.testid = testid;
+	}
+
 	public int getCno() {
 		return cno;
 	}
+
 	public void setCno(int cno) {
 		this.cno = cno;
 	}
-	public int getPscj() {
-		return pscj;
+
+	public String getCname() {
+		return cname;
 	}
-	public void setPscj(int pscj) {
-		this.pscj = pscj;
+
+	public void setCname(String cname) {
+		this.cname = cname;
 	}
-	public int getQmcj() {
-		return qmcj;
+
+	public String getTestname() {
+		return testname;
 	}
-	public void setQmcj(int qmcj) {
-		this.qmcj = qmcj;
+
+	public void setTestname(String testname) {
+		this.testname = testname;
 	}
-	public int getZpcj() {
-		return zpcj;
+
+	public String getTime() {
+		return time;
 	}
-	public void setZpcj(int zpcj) {
-		this.zpcj = zpcj;
+
+	public void setTime(String time) {
+		this.time = time;
 	}
+
+	public int getGradeid() {
+		return gradeid;
+	}
+
+	public void setGradeid(int gradeid) {
+		this.gradeid = gradeid;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public int getGrade() {
+		return grade;
+	}
+
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+	
+	
+	
 	
 	
 }

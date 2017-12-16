@@ -15,6 +15,7 @@ public interface CourseRepository {
 	int insertCourse(CourseEntity record);
 	int deleteByCno(int cno);
 	List<Integer> selectByUserid(String userid);
+	List<String> selectUserNameByCno(int cno);
 	int insertStudent(String userid, int cno, String invite);
 	List<AttendEntity> selectAttendByCno(int cno);
 }
