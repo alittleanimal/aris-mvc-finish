@@ -24,6 +24,8 @@ public interface AttendRepository {
 	List<Integer> selectUnAttendCourseById(String userid);
 
 	int MaxCount(int cno);
+	
+	int ifnew(int cno);
 
 	List<AttendEntity> selectAttendByIdCno(int cno, String user, String state);
 
@@ -34,4 +36,8 @@ public interface AttendRepository {
 	int getCno (String attendenceID);
 	
 	int getCount (String attendenceID);
+	
+	int deleteAttend (int cno);
+	
+	int deleteAttendDetail (int cno);
 }

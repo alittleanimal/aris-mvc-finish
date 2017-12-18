@@ -82,5 +82,37 @@ public class GradeServiceImpl implements GradeService {
 		}
 		return gradeEntities;
 	}
+	
+	@Override
+	public boolean endTest(String testid) {
+		int result1 = gradeRepository.deleteTest(testid);
+		int result2 = gradeRepository.deleteTestDetail(testid);
+		if (result1 != 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+
+	@Override
+	public boolean endTestByCno(int cno) {
+		int result2 = gradeRepository.deleteTestDetailByCno(cno);
+		int result1 = gradeRepository.deleteTestByCno(cno);
+		if (result1 != 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	@Override
+	public int getCnoBytestid(String testid) {
+		int cno = gradeRepository.getCnoBytestid(testid);
+		
+		return cno;
+		
+	}
+	
 
 }

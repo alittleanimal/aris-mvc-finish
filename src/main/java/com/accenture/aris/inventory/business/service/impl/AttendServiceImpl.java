@@ -42,7 +42,15 @@ public class AttendServiceImpl implements AttendService {
 		{
 			attendEntity.setAttendenceId(attendenceID);
 		}
-		int count = attendRepository.MaxCount(cno) + 1;
+		int count=0;
+		if (attendRepository.ifnew(cno)==0)
+		{
+			count=1;
+		}
+		else {
+			count = attendRepository.MaxCount(cno) + 1;
+		}
+		
 		AttendEntity attendEntity = attendEntityList.get(0);
 		attendEntity.setStatus(1);
 		attendEntity.setCount(count);
@@ -110,7 +118,18 @@ public class AttendServiceImpl implements AttendService {
 			return false;
 		}
 	}
+	
 
+	@Override
+	public boolean endAttendByCno(int cno) {
+		int result1 = attendRepository.deleteAttend(cno);
+		int result2 = attendRepository.deleteAttendDetail(cno);
+		if (result1!=0) {
+			return true;
+		}else{
+			return false;
+		}
+	}
 	@Override
 	public List<AttendEntity> selectAttendByIdCno(int cno, String user, String state) {
 		List<AttendEntity> attendEntities = new ArrayList<AttendEntity>();
@@ -134,7 +153,14 @@ public class AttendServiceImpl implements AttendService {
 
 	@Override
 	public int MaxCount(int cno) {
-		int temp = attendRepository.MaxCount(cno);
+		int temp=0;
+		if (attendRepository.ifnew(cno)==0)
+		{
+			temp=0;
+		}
+		else{
+			temp = attendRepository.MaxCount(cno);
+		}
 		return temp;
 	}
 	

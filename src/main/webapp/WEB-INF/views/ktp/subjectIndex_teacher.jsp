@@ -100,8 +100,8 @@
 						<spring:url var="attendUrl" value="/stock/view/attendIndex"/>
 						<spring:url var="messageUrl" value="/stock/view/messageIndex"/>
 						<spring:url var="noticeUrl" value="/stock/view/noticeIndex"/>
-						<spring:url var="gradeUrl" value="/stock/view/gradeIndex"/>
 						<spring:url var="fileUrl" value="/stock/UploadFiles"/>
+						<spring:url var="gradeUrl" value="/stock/view/gradeIndex"/>						
 						<spring:url var="userUrl" value="/user/updateInput"/>
 						<spring:url var="loginUrl" value="/"/>
 						<li><a href="index.jsp" class=""><i class="lnr lnr-home"></i> <span>主页</span></a></li>
@@ -120,7 +120,6 @@
 							</div>
 						</li>
 						<li><a href="${fileUrl }" class=""><i class="lnr lnr-dice"></i> <span>资料</span></a></li>
-						<li><a href="typography.jsp" class=""><i class="lnr lnr-text-format"></i> <span>作业</span></a></li>
 						<li><a href="${messageUrl}" class=""><i class="lnr lnr-linearicons"></i> <span>留言板</span></a></li>
 					</ul>
 				</nav>
@@ -141,8 +140,16 @@
  							<c:forEach var="course" items="${courses}">						
  								<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title"><c:out value="${course.cname}"></c:out></h3>
+								<div>
+									<div style="float: left">
+										<h3  class="panel-title"><c:out value="${course.cname}"></c:out></h3>
+									</div>
+									<spring:url var="endClassUrl" value="/stock/view/endCourse/${course.cno}"/>
+										<div style="float: right">
+										<a href="${endClassUrl}" class="btn btn-primary">结束课程</a></div>
 								</div>
+								</div>
+								<br>
 								<div class="panel-body">
 									<tr>
 										<td>学分  :  </td>

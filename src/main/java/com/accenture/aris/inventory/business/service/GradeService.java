@@ -18,4 +18,10 @@ public interface GradeService {
 
 	List<GradeEntity>  getStudentTestList(String userid); //根据学生userid查找t_user_course表所选的课cno，再用cno查grade和grade_detail得到学生所选课的考试信息
 	
+	boolean endTest(String testid);
+	
+	boolean endTestByCno(int cno);
+	
+	int getCnoBytestid (String testid);
+	
 }

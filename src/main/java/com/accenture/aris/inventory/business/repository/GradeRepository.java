@@ -21,4 +21,14 @@ public interface GradeRepository {
 	int changeGrade (int gradeid,int grade); //根据gradeid更改学生的成绩信息 （grade_detail表）
 
 	List<GradeEntity> getAllGradeByCnoUserid(int cno ,String userid);
+	
+	int deleteTest(String testid);
+	
+	int deleteTestDetail(String testid);
+	
+	int deleteTestByCno(int cno);
+	
+	int deleteTestDetailByCno(int cno);
+	
+	int getCnoBytestid(String testid);
 }

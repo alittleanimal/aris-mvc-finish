@@ -59,4 +59,17 @@ public class CourseServiceImpl implements CourseService{
 		courseEntity = courseRepository.selectByCno(cno);
 		return courseEntity.getCname();
 	}
+	
+
+	@Override
+	public boolean endCourse(int cno) {
+		int result1 = courseRepository.deleteByCno(cno);
+		int result2 = courseRepository.deleteSelectByCno(cno);
+
+		if (result1 != 0) {
+			return true; 
+		}else {
+			return false;
+		}
+	}
 }

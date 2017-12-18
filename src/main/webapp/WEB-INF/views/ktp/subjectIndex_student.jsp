@@ -120,7 +120,6 @@
 							</div>
 						</li>
 						<li><a href="${fileUrl }" class=""><i class="lnr lnr-dice"></i> <span>资料</span></a></li>
-						<li><a href="typography.jsp" class=""><i class="lnr lnr-text-format"></i> <span>作业</span></a></li>
 						<li><a href="${messageUrl}" class=""><i class="lnr lnr-linearicons"></i> <span>留言板</span></a></li>
 					</ul>
 				</nav>

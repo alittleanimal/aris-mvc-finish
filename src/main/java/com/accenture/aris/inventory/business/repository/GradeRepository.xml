@@ -10,8 +10,7 @@
 		<result column="cno" property="cno" jdbcType="INTEGER" />
 		<result column="cname" property="cname" jdbcType="VARCHAR" />
 		<result column="testname" property="testname" jdbcType="VARCHAR" />
-		<result column="time" property="time" jdbcType="VARCHAR" />
-		
+		<result column="time" property="time" jdbcType="VARCHAR" />		
 		<result column="gradeid" property="gradeid" jdbcType="INTEGER" />
 		<result column="grade" property="grade" jdbcType="INTEGER" />
 		<result column="username" property="username" jdbcType="VARCHAR" />
@@ -49,6 +48,14 @@
 		where t.testid = g.testid
 		and cno = #{0} and t.username=(select name from t_user where id=#{1})
 	</select>
+	
+	<select id="getCnoBytestid" resultType="java.lang.Integer"
+	parameterType="java.lang.String">
+		select
+		cno
+		from t_grade
+		where testid=#{0}
+	</select>
 
 	<update id="changeGrade"
 		parameterType="com.accenture.aris.inventory.business.entity.GradeEntity">
@@ -56,7 +63,27 @@
 		set grade = #{1}
 		where gradeid = #{0}
 	</update>
-
+	
+	<delete id="deleteTest">
+		delete from t_grade
+		where testid = #{0}
+	</delete>
+	
+	<delete id="deleteTestDetail">
+		delete from t_grade_detail
+		where testid = #{0}
+	</delete>
+	
+	<delete id="deleteTestDetailByCno">
+		delete from t_grade_detail 
+		where testid= (select testid from t_grade where cno=#{0})
+	</delete>
+	
+	<delete id="deleteTestByCno">
+		delete from t_grade
+		where  cno=#{0}
+	</delete>
+		
 	<insert id="insertIntoGrade"
 		parameterType="com.accenture.aris.inventory.business.entity.GradeEntity">
 		insert into t_grade (testid,cno,cname,testname,time)

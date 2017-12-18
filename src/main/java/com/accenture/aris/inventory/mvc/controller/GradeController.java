@@ -52,7 +52,7 @@ public class GradeController {
 	GradeService gradeService;
 	
 	@RequestMapping(value = "/view/gradeIndex")
-	public String noticeIndexInit(@Valid Model uiModel, SessionStatus status,HttpServletRequest request){
+	public String gradeIndexInit(@Valid Model uiModel, SessionStatus status,HttpServletRequest request){
 		
         String roleID= new ServletAuthorisedLocator(request).getAuthorisedRole();
 		String userID= new ServletAuthenticatedLocator(request).getAuthenicatedUser();
@@ -136,6 +136,14 @@ public class GradeController {
 		
 		GradeEntity gradeEntity = gradeService.getOneDetail(gradeid);
 		String testid = gradeEntity.getTestid();
+		if (gradeForm.getGrade()== null || gradeForm.getGrade()== "" ||
+				Integer.parseInt(gradeForm.getGrade())>100 ||Integer.parseInt(gradeForm.getGrade())<0)
+		{
+			GradeEntity gradeEntityChange = gradeService.getOneDetail(gradeid);
+			
+			uiModel.addAttribute("gradeEntity", gradeEntityChange);
+			return "grade/gradeDetail_changeFailed";
+		}
 		boolean gradeResult = gradeService.changeGrade(gradeid, Integer.parseInt(gradeForm.getGrade()));
 	
 		return "redirect:/stock/view/gradeDetailTeacher/" + testid;
@@ -145,15 +153,37 @@ public class GradeController {
 	@RequestMapping(value = "/view/createTestDetail/{cno}")
 	public String createTestDetail(@Valid @PathVariable("cno") int cno, Model uiModel,SessionStatus status,HttpServletRequest request){
 			
+		String cname = courseService.selectCourseNameById(cno);
 		uiModel.addAttribute("cno", cno);
+		uiModel.addAttribute("cname", cname);
+
 
 		return "grade/createTest" ;
+		
+	}
+	
+	@RequestMapping(value = "/view/endTest/{testid}")
+	public String endTest(@Valid @PathVariable("testid") String testid, Model uiModel,SessionStatus status,HttpServletRequest request){
+			
+		int cno= gradeService.getCnoBytestid(testid);
+		
+		boolean endResult = gradeService.endTest(testid);
+
+		return "redirect:/stock/view/gradeDetail/"+cno ;
 		
 	}
 	@RequestMapping(value = "/view/createTest/{cno}")
 	public String createTest(@Valid @PathVariable("cno") int cno, Model uiModel,
 			GradeForm gradeForm,SessionStatus status,HttpServletRequest request){
 		
+		if (gradeForm.getTestname()==null ||gradeForm.getTestname()=="" 
+				|| gradeForm.getTime()=="" || gradeForm.getTime()==null)
+		{
+			String cname = courseService.selectCourseNameById(cno);
+			uiModel.addAttribute("cno", cno);
+			uiModel.addAttribute("cname", cname);
+			return "grade/createTestFailed" ;
+		}
 		GradeEntity gradeEntity = new GradeEntity();
 		gradeEntity.setTestid(getRandomCharAndNumr(7));
 		gradeEntity.setCno(cno);
@@ -165,7 +195,7 @@ public class GradeController {
 		
 
 		
-		return "redirect:/stock/view/gradeDetail/" + cno;
+		return "grade/createTestSuccess" ;
 		
 	}
 	

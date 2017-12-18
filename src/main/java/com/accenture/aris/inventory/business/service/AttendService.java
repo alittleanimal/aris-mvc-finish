@@ -31,6 +31,8 @@ public interface AttendService {
 	
 	public int MaxCount(int cno);
 	
+	public boolean endAttendByCno(int cno);
+	
 	public int getCno (String attendenceID);
 	public int getCount (String attendenceID);
 }

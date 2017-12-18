@@ -64,7 +64,7 @@
 						<div class="overlay"></div>
 						<div class="content text">
 							<h1 class="heading">Shanghai University Class Assistant</h1>
-							<p>by Xu Zhongwei</p>
+							<p>by Leng Jingwei</p>
 						</div>
 					</div>
 					<div class="clearfix"></div>

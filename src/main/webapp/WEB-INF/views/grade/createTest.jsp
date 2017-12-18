@@ -97,24 +97,30 @@
 				<nav>
 					<ul class="nav">
 						<spring:url var="subjectUrl" value="/stock/view/subjectIndex"/>
+						<spring:url var="attendUrl" value="/stock/view/attendIndex"/>
+						<spring:url var="messageUrl" value="/stock/view/messageIndex"/>
+						<spring:url var="noticeUrl" value="/stock/view/noticeIndex"/>
+						<spring:url var="fileUrl" value="/stock/UploadFiles"/>
+						<spring:url var="gradeUrl" value="/stock/view/gradeIndex"/>						
+						<spring:url var="userUrl" value="/user/updateInput"/>
+						<spring:url var="loginUrl" value="/"/>
 						<li><a href="index.jsp" class=""><i class="lnr lnr-home"></i> <span>主页</span></a></li>
-						<li><a href="${subjectUrl}"class="active"><i class="lnr lnr-code"></i> <span>课程</span></a></li>
-						<li><a href="charts.jsp" class=""><i class="lnr lnr-chart-bars"></i> <span>考勤</span></a></li>
-						<li><a href="panels.jsp" class=""><i class="lnr lnr-cog"></i> <span>公告</span></a></li>
-						<li><a href="notifications.jsp" class=""><i class="lnr lnr-alarm"></i> <span>成绩</span></a></li>
+						<li><a href="${subjectUrl}"class=""><i class="lnr lnr-code"></i> <span>课程</span></a></li>
+						<li><a href="${attendUrl}" class=""><i class="lnr lnr-chart-bars"></i> <span>考勤</span></a></li>
+						<li><a href="${noticeUrl}" class=""><i class="lnr lnr-cog"></i> <span>公告</span></a></li>
+						<li><a href="${gradeUrl}" class="active"><i class="lnr lnr-alarm"></i> <span>成绩</span></a></li>
 						<li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>个人信息</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
-									<li><a href="page-profile.jsp" class="">个人信息</a></li>
-									<li><a href="page-login.jsp" class="">登录</a></li>
+									<li><a href="${userUrl}" class="">个人信息</a></li>
+									<li><a href="${loginUrl}" class="">登出</a></li>
 									<li><a href="page-lockscreen.jsp  " class="">锁屏</a></li>
 								</ul>
 							</div>
 						</li>
-						<li><a href="tables.jsp" class=""><i class="lnr lnr-dice"></i> <span>资料</span></a></li>
-						<li><a href="typography.jsp" class=""><i class="lnr lnr-text-format"></i> <span>作业</span></a></li>
-						<li><a href="icons.jsp" class=""><i class="lnr lnr-linearicons"></i> <span>留言板</span></a></li>
+						<li><a href="${fileUrl }" class=""><i class="lnr lnr-dice"></i> <span>资料</span></a></li>
+						<li><a href="${messageUrl}" class=""><i class="lnr lnr-linearicons"></i> <span>留言板</span></a></li>
 					</ul>
 				</nav>
 			</div>
@@ -148,15 +154,22 @@
              								 <input id="time" name="time" class="form-control input-lg" placeholder="2017.12.7" type="text" 
              								 	style="height:40px;width:250px;float:right">
           								</div>
+          								<c:set var = "cname" value = "${cname}"/>
+          							<div class="control-group">             								
+             								 <div style="color: green">
+												您正在创建<c:out value="${cname}"></c:out>课程中的考试
+											 </div>
+          							</div>
           							<!-- submit or return button -->
           							<div class="control-group">
             							<div style="text-align:center" >
-              							<spring:url var="cancelUrl" value="/stock/view/gradeIndex"/>
+              							<spring:url var="cancelUrl" value="/stock/view/gradeDetail/${cno}"/>
               							<a href="${cancelUrl}" class="btn btn-info"> 返回</a>   
               							<button type="submit" class="btn btn-info"> 确认</button>           							
            							    </div>
            							</div>
           							</form:form>
+          							
 								</div>
 							</div>
 							<!-- END CLASS1 -->

@@ -11,4 +11,5 @@ public interface CourseService {
 	public Boolean AddStudent(String userid, String invitation);
 	public Boolean AddCourse(CourseEntity courseEntity);
 	public String selectCourseNameById(int cno);
+	public boolean endCourse (int cno);
 }
