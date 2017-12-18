@@ -61,7 +61,7 @@ public class LoginController {
             if (user == null) {
                 LOGGER.debug("Authentication : Failure");
                 uiModel.addAttribute("message", messages.getMessage("I00002"));         
-                return "index";
+                return "page-login";
             }
             LOGGER.debug("Authentication : Successful");
             
@@ -70,7 +70,7 @@ public class LoginController {
             if (role == null || role.getRoleId() == null) {
                 LOGGER.debug("Authorization : Failure");
                 uiModel.addAttribute("message", messages.getMessage("W00002"));         
-                return "index";
+                return "page-login";
             }
             LOGGER.debug("Authorization : Successful");
             
@@ -89,7 +89,7 @@ public class LoginController {
             if (th instanceof org.mybatis.spring.MyBatisSystemException) {
                 th.printStackTrace();
                 uiModel.addAttribute("message", "Can not get jdbc connetion. Database connetion is refused.");          
-                return "index";
+                return "page-login";
             }
             if (th instanceof RuntimeException) {
                 throw (RuntimeException)th;
@@ -105,12 +105,12 @@ public class LoginController {
         AuthenticatedLocator locator = new ServletAuthenticatedLocator(request);
         locator.removeAuthenticatedUser();
         request.getSession().invalidate();
-        return "index";
+        return "page-login";
     }
 
     @ExceptionHandler(Exception.class)
     public String exceptionHandler(Exception e) {
         e.printStackTrace();
-        return "index";
+        return "page-login";
     }
 }
